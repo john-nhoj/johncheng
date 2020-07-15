@@ -2,18 +2,24 @@ variable "region" {
   description = "The primary AWS region where all the resources will be created. See https://docs.aws.amazon.com/general/latest/gr/rande.html"
 }
 
-variable "tags" {
-  description = "AWS Tags to add to all resources created (where possible); see https://aws.amazon.com/answers/account-management/aws-tagging-strategies/"
-  type        = map
-  default     = {}
-}
-
 variable "site_domain" {
   description = "The primary domain name of the website"
 }
 
+variable "origin_url" {
+  description = "Base URL for proxy upstream site (e.g. `\"https://example.com/\"`)"
+}
+
 variable "bucket_name" {
   description = "The name of the S3 bucket wich would host the static files"
+}
+
+# Variables with default
+
+variable "tags" {
+  description = "AWS Tags to add to all resources created (where possible); see https://aws.amazon.com/answers/account-management/aws-tagging-strategies/"
+  type        = map
+  default     = {}
 }
 
 variable "cf_price_class" {
@@ -63,12 +69,12 @@ variable "override_response_body" {
 
 variable "basic_auth_username" {
   description = "When non-empty, require this username with HTTP Basic Auth"
-  default     = "foo"
+  default     = "admin"
 }
 
 variable "basic_auth_password" {
   description = "When non-empty, require this password with HTTP Basic Auth"
-  default     = "bar"
+  default     = "secret"
 }
 
 variable "basic_auth_realm" {
@@ -92,7 +98,7 @@ variable "add_response_headers" {
 
 variable "lambda_logging_enabled" {
   description = "When true, writes information about incoming requests to the Lambda function's CloudWatch group"
-  default     = false
+  default     = true
 }
 
 variable "name_prefix" {
@@ -103,10 +109,6 @@ variable "name_prefix" {
 variable "comment_prefix" {
   description = "This will be included in comments for resources that are created"
   default     = "Reverse proxy: "
-}
-
-variable "origin_url" {
-  description = "Base URL for proxy upstream site (e.g. `\"https://example.com/\"`)"
 }
 
 variable "origin_custom_header_name" {
