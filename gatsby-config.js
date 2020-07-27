@@ -30,7 +30,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: "johncheng-gatsby",
+        bucketName: "johncheng",
         acl: null,
       },
     },
