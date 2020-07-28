@@ -30,7 +30,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: "johncheng",
+        bucketName: 'johncheng',
         acl: null,
       },
     },
@@ -38,4 +38,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
