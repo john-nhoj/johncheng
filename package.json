@@ -20,7 +20,13 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "@types/react-helmet": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "eslint": "^7.5.0",
+    "eslint-config-react-app": "^5.2.1",
+    "prettier": "2.0.5",
+    "typescript": "^3.9.7"
   },
   "keywords": [
     "gatsby"
@@ -34,7 +40,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "deploy": "AWS_PROFILE=johncheng gatsby-plugin-s3 deploy"
+    "deploy": "AWS_PROFILE=johncheng gatsby-plugin-s3 deploy",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
