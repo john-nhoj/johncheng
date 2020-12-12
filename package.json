@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "husky": {
-    "pre-push": "npm test"
+    "pre-push": "npm run test"
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
