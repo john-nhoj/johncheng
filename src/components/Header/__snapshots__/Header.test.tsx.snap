@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header 1`] = `
+<header
+  className="bg-black text-white flex flex-wrap"
+>
+  <a
+    className="p-4 h-full"
+    href="/"
+  >
+    Home
+  </a>
+  <a
+    className="p-4 h-full"
+    href="/about"
+  >
+    About
+  </a>
+  <a
+    className="p-4 h-full"
+    href="/blog"
+  >
+    Blog
+  </a>
+</header>
+`;
