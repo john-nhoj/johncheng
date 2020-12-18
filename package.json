@@ -8,11 +8,12 @@
     "start": "next start",
     "test": "jest",
     "lint-js": "eslint --max-warnings=0 --ext .ts,.tsx,.js .",
-    "lint-fix": "eslint --max-warnings=0 --ext .ts,.tsx,.js --fix ."
+    "lint-fix": "eslint --max-warnings=0 --ext .ts,.tsx,.js --fix .",
+    "prepush": "npm run test && npm run lint-js"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test"
+      "pre-push": "npm run prepush"
     }
   },
   "dependencies": {
