@@ -1,5 +1,4 @@
-import { link } from "fs";
-import React from "react";
+import React from 'react';
 
 type HeaderLinkProps = {
   label: string;
