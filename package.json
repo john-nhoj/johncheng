@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "test": "jest",
     "lint-js": "eslint --max-warnings=0 --ext .ts,.tsx,.js .",
     "lint-fix": "eslint --max-warnings=0 --ext .ts,.tsx,.js --fix .",
-    "prepush": "npm run test && npm run lint-js"
+    "prepush": "npm run tsc && npm run lint-js && npm run test",
+    "start": "next start",
+    "test": "jest",
+    "tsc": "tsc"
   },
   "husky": {
     "hooks": {
