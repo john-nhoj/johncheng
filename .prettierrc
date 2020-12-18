@@ -4,13 +4,5 @@
   "useTabs": false,
   "tabWidth": 2,
   "bracketSpacing": true,
-  "singleQuote": true,
-  "overrides": [
-    {
-      "files": "*.{scss,css,html}",
-      "options": {
-        "singleQuote": false
-      }
-    }
-  ]
+  "singleQuote": true
 }
