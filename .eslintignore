@@ -1,0 +1,12 @@
+# Ignore IDE dirs
+.vscode
+.idea
+
+# Standard node_modules ignore
+node_modules/**
+# Ignore test coverage results
+coverage/**
+# Ignore AWS configs
+aws/**
+# Ignore nextJS dirs
+.next/**
