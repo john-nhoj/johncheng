@@ -6,7 +6,7 @@ type HeaderLinkProps = {
 };
 
 const HeaderLink = ({ label, link }: HeaderLinkProps) => (
-  <a href={link} className="p-4 h-full">
+  <a href={link} className="p-4 h-full text-2xl font-ubuntu">
     {label}
   </a>
 );
