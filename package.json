@@ -10,7 +10,8 @@
     "prepush": "npm run tsc && npm run lint-js && npm run test",
     "start": "next start",
     "test": "jest",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "update-snapshots": "jest --updateSnapshot"
   },
   "husky": {
     "hooks": {
