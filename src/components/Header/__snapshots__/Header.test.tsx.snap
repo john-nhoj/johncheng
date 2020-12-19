@@ -5,19 +5,19 @@ exports[`Header 1`] = `
   className="bg-black text-white flex flex-wrap"
 >
   <a
-    className="p-4 h-full"
+    className="p-4 h-full text-2xl font-ubuntu"
     href="/"
   >
     Home
   </a>
   <a
-    className="p-4 h-full"
+    className="p-4 h-full text-2xl font-ubuntu"
     href="/about"
   >
     About
   </a>
   <a
-    className="p-4 h-full"
+    className="p-4 h-full text-2xl font-ubuntu"
     href="/blog"
   >
     Blog
