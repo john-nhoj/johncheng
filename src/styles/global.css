@@ -9,3 +9,16 @@
   font-display: block;
   src: url(./fonts/Ubuntu-R.ttf) format('truetype');
 }
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  font-family: Ubuntu, Helvetica Neue, Helvetica, Arial;
+  /* font-size: 14px; */
+  color: #333;
+  @apply bg-gray;
+}

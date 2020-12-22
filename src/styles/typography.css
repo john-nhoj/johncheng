@@ -1,0 +1,11 @@
+@screen md {
+  .header-link {
+    @apply text-lg;
+  }
+}
+
+@screen lg {
+  .header-link {
+    @apply text-2xl;
+  }
+}
