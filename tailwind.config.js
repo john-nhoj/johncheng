@@ -6,9 +6,15 @@ module.exports = {
       black: '#000',
       white: '#FDFDFD',
       gray: '#F4F5F7',
+      border: '#E0E0E0',
     },
     fontFamily: {
       ubuntu: ['Ubuntu', 'sans-serif'],
+    },
+  },
+  variants: {
+    extend: {
+      margin: ['first'],
     },
   },
 };
