@@ -47,7 +47,7 @@ export class AwsStack extends cdk.Stack {
         redirectHTTP: true,
         publicLoadBalancer: true,
         taskImageOptions: {
-          image: ecs.ContainerImage.fromRegistry(''),
+          image: ecs.ContainerImage.fromRegistry('nginx:latest'),
         },
       }
     );
