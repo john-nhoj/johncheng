@@ -27,7 +27,8 @@ export class AwsStack extends cdk.Stack {
 
     // ACM
     const certificate = new acm.Certificate(this, 'Certificate', {
-      domainName: '*.johncheng.me',
+      domainName: 'johncheng.me',
+      subjectAlternativeNames: ['*.johncheng.me'],
       validation: acm.CertificateValidation.fromDns(myHostedZone),
     });
 
