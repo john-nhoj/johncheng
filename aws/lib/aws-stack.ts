@@ -177,6 +177,16 @@ export class AwsStack extends cdk.Stack {
             }),
           ],
         },
+        {
+          stageName: 'Deploy',
+          actions: [
+            new codepipeline_actions.EcsDeployAction({
+              actionName: 'ECSDeploy_Action',
+              input: cdkBuildOutput,
+              service: loadBalancedFargateService.service,
+            }),
+          ],
+        },
       ],
     });
   }
