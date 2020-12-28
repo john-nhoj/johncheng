@@ -56,7 +56,7 @@ export class AwsStack extends cdk.Stack {
         redirectHTTP: true,
         publicLoadBalancer: true,
         taskImageOptions: {
-          image: ecs.ContainerImage.fromRegistry('nginx:latest'),
+          image: ecs.ContainerImage.fromAsset('..'),
         },
       }
     );
@@ -85,12 +85,20 @@ export class AwsStack extends cdk.Stack {
             'runtime-versions': {
               nodejs: 14,
             },
-            commands: ['npm install -g npm', 'n stable', 'npm install'],
+            commands: [
+              // Wait until docker has started
+              'nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&',
+              'timeout 15 sh -c "until docker info; do echo .; sleep 1; done"',
+              'npm install -g npm',
+              'pip3 install --upgrade --user awscli',
+              'n stable',
+              'npm install',
+            ],
           },
           pre_build: {
             commands: [
               'aws --version',
-              "$(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email |  sed 's|https://||')",
+              'aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 984719580259.dkr.ecr.eu-west-1.amazonaws.com',
               'COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)',
               'IMAGE_TAG=${COMMIT_HASH:=latest}',
               'npm run test',
@@ -98,8 +106,15 @@ export class AwsStack extends cdk.Stack {
           },
           build: {
             commands: [
+              'ls -alp',
               'npm run build',
-              'docker push $REPOSITORY_URI:latest',
+              'docker build -t $REPOSITORY_URI:latest .',
+              'docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG',
+            ],
+          },
+          post_build: {
+            commands: [
+              'docker push 984719580259.dkr.ecr.eu-west-1.amazonaws.com/ecrrepoc36dc9e6-dtmwdbuhjg1w:latest',
               'docker push $REPOSITORY_URI:$IMAGE_TAG',
               'printf "[{\\"name\\":\\"${CONTAINER_NAME}\\",\\"imageUri\\":\\"${REPOSITORY_URI}:latest\\"}]" > imagedefinitions.json',
             ],
@@ -109,8 +124,12 @@ export class AwsStack extends cdk.Stack {
           files: ['imagedefinitions.json'],
         },
       }),
+      environment: {
+        buildImage: codeBuild.LinuxBuildImage.STANDARD_1_0,
+        privileged: true,
+      },
       environmentVariables: {
-        REPOSITORY_URI: { value: ecrRepo.repositoryArn },
+        REPOSITORY_URI: { value: ecrRepo.repositoryUri },
         CONTAINER_NAME: { value: containerName },
       },
     });
