@@ -45,6 +45,8 @@ export class AwsStack extends cdk.Stack {
       vpc,
     });
 
+    const ecrRepo = new ecr.Repository(this, 'ECRRepo');
+
     // ALB
     const loadBalancedFargateService = new ecsPatterns.ApplicationLoadBalancedFargateService(
       this,
@@ -57,7 +59,7 @@ export class AwsStack extends cdk.Stack {
         redirectHTTP: true,
         publicLoadBalancer: true,
         taskImageOptions: {
-          image: ecs.ContainerImage.fromAsset('..'),
+          image: ecs.ContainerImage.fromEcrRepository(ecrRepo),
         },
       }
     );
@@ -73,7 +75,6 @@ export class AwsStack extends cdk.Stack {
 
     const sourceOutput = new codepipeline.Artifact('SrcOutput');
     const cdkBuildOutput = new codepipeline.Artifact('CdkBuildOutput');
-    const ecrRepo = new ecr.Repository(this, 'ECRRepo');
     ecrRepo.grantPull(loadBalancedFargateService.taskDefinition.executionRole!);
     const containerName = loadBalancedFargateService.taskDefinition
       .defaultContainer!.containerName;
