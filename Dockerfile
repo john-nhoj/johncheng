@@ -1,10 +1,9 @@
-ARG BASEIMAGE=node:14
+# FROM node:14
+# WORKDIR /usr/src/app
+# COPY . .
+# EXPOSE 3000
+# RUN ls -alp
+# RUN pwd
+# RUN npm run start
 
-# Setting working directory. All the path will be relative to WORKDIR
-WORKDIR /usr/src/app
-
-# Copying source files
-COPY . .
-
-# Running the app
-ENTRYPOINT ["./scripts/run.sh"]
+FROM nginx:latest
