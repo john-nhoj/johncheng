@@ -18,8 +18,6 @@ class CodeBuild extends Construct {
 
     const { alb } = props;
 
-    const sourceOutput = new Artifact('SrcOutput');
-    const cdkBuildOutput = new Artifact('CdkBuildOutput');
     const containerName = alb.alb.taskDefinition.defaultContainer!
       .containerName;
 
