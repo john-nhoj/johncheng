@@ -3,7 +3,6 @@ import {
   LinuxBuildImage,
   PipelineProject,
 } from '@aws-cdk/aws-codebuild';
-import { Artifact } from '@aws-cdk/aws-codepipeline';
 import { Construct } from '@aws-cdk/core';
 import { ApplicationLoadBalancer } from './alb';
 
@@ -70,7 +69,7 @@ class CodeBuild extends Construct {
         },
         post_build: {
           commands: [
-            'docker push 984719580259.dkr.ecr.eu-west-1.amazonaws.com/ecrrepoc36dc9e6-dtmwdbuhjg1w:latest',
+            'docker push $REPOSITORY_URI:latest',
             'docker push $REPOSITORY_URI:$IMAGE_TAG',
             'printf "[{\\"name\\":\\"${CONTAINER_NAME}\\",\\"imageUri\\":\\"${REPOSITORY_URI}:latest\\"}]" > imagedefinitions.json',
           ],
