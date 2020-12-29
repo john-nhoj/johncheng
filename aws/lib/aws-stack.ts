@@ -11,6 +11,7 @@ import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 import * as codeBuild from '@aws-cdk/aws-codebuild';
 import * as ssm from '@aws-cdk/aws-ssm';
 import * as ecr from '@aws-cdk/aws-ecr';
+import { HostedZone } from '@aws-cdk/aws-route53';
 
 export interface PipelineStackProps extends cdk.StackProps {
   readonly githubToken: string;
@@ -21,15 +22,16 @@ export class AwsStack extends cdk.Stack {
     super(scope, id, props);
 
     // Route53
-    const myHostedZone = new route53.HostedZone(this, 'HostedZone', {
+    const hostedZone = new route53.HostedZone(this, 'HostedZone', {
       zoneName: 'johncheng.me',
+      comment: 'Hosted zone for my personal website',
     });
 
     // ACM
     const certificate = new acm.Certificate(this, 'Certificate', {
       domainName: 'johncheng.me',
       subjectAlternativeNames: ['*.johncheng.me'],
-      validation: acm.CertificateValidation.fromDns(myHostedZone),
+      validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
     console.info(
@@ -55,7 +57,7 @@ export class AwsStack extends cdk.Stack {
         cluster,
         certificate,
         domainName: 'johncheng.me',
-        domainZone: myHostedZone,
+        domainZone: hostedZone,
         redirectHTTP: true,
         publicLoadBalancer: true,
         taskImageOptions: {
