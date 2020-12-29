@@ -12,6 +12,7 @@ import * as codeBuild from '@aws-cdk/aws-codebuild';
 import * as ssm from '@aws-cdk/aws-ssm';
 import * as ecr from '@aws-cdk/aws-ecr';
 import { HostedZone } from '@aws-cdk/aws-route53';
+import { Tags } from '@aws-cdk/core';
 
 export interface PipelineStackProps extends cdk.StackProps {
   readonly githubToken: string;
@@ -34,6 +35,8 @@ export class AwsStack extends cdk.Stack {
       validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
+    Tags.of(certificate).add('Name', 'johncheng-certificate');
+
     console.info(
       `Do not forget to change the Registar Nameservers to point to the Hosted one`
     );
@@ -41,10 +44,12 @@ export class AwsStack extends cdk.Stack {
     // Origin
     // VPC
     const vpc = new ec2.Vpc(this, 'public VPC');
+    Tags.of(vpc).add('Name', 'johncheng-vpc');
 
     // Cluster
     const cluster = new ecs.Cluster(this, 'myCluster', {
       vpc,
+      clusterName: 'johncheng-cluster',
     });
 
     const ecrRepo = new ecr.Repository(this, 'ECRRepo');
