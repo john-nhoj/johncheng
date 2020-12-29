@@ -7,27 +7,27 @@ import { Cloudfront } from '../lib/cloudfront';
 import { Cluster } from '../lib/cluster';
 import { CodeBuild } from '../lib/codeBuild';
 
+interface WebStackProps {
+  acm: Acm;
+}
 class WebStack extends Stack {
-  constructor(scope: Construct, id: string) {
+  constructor(scope: Construct, id: string, props: WebStackProps) {
     super(scope, id);
+    const { acm } = props;
 
-    const acm = new Acm(this, 'johncheng-acm-stack');
     const cluster = new Cluster(this, 'johncheng-cluster-construct');
     const alb = new ApplicationLoadBalancer(this, 'johncheng-alb-construct', {
       acm,
       cluster,
     });
-    const cloudfront = new Cloudfront(this, 'johncheng-cloudfront-construct', {
+    new Cloudfront(this, 'johncheng-cloudfront-construct', {
       alb,
     });
-    const codeBuildProject = new CodeBuild(
-      this,
-      'johncheng-codebuild-construct',
-      { alb }
-    );
+    new CodeBuild(this, 'johncheng-codebuild-construct', { alb });
   }
 }
 
 const app = new App();
-const webStack = new WebStack(app, 'johncheng-webstack');
+const AcmStack = new Acm(app, 'johncheng-acm-stack');
+new WebStack(app, 'johncheng-webstack', { acm: AcmStack });
 app.synth();
