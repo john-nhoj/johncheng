@@ -68,6 +68,7 @@ export class AwsStack extends cdk.Stack {
         taskImageOptions: {
           image: ecs.ContainerImage.fromEcrRepository(ecrRepo),
         },
+        serviceName: 'johncheng-fargate',
       }
     );
 
