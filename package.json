@@ -8,7 +8,7 @@
     "lint-js": "eslint --max-warnings=0 --ext .ts,.tsx,.js .",
     "lint-fix": "eslint --max-warnings=0 --ext .ts,.tsx,.js --fix .",
     "prepush": "npm run tsc && npm run lint-js && npm run test",
-    "start": "next start",
+    "start": "next start -p 80",
     "test": "jest",
     "tsc": "tsc",
     "update-snapshots": "jest --updateSnapshot",
