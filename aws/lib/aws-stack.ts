@@ -72,6 +72,8 @@ export class AwsStack extends cdk.Stack {
       }
     );
 
+    Tags.of(loadBalancedFargateService).add('Name', 'johncheng-alb');
+
     // Cloudfront
     new cloudfront.Distribution(this, 'myDist', {
       defaultBehavior: {
