@@ -29,9 +29,13 @@ class Acm extends Stack {
     console.info(
       `Do not forget to change the Registar Nameservers to point to the Hosted one`
     );
+
+    this.output();
   }
 
-  output() {}
+  output() {
+    certificateArn: this.certificate.certificateArn;
+  }
 }
 
 export { Acm };
