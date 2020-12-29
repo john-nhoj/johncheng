@@ -35,6 +35,7 @@ class Acm extends Stack {
 
   output() {
     certificateArn: this.certificate.certificateArn;
+    hostedZoneId: this.hostedZone.hostedZoneId;
   }
 }
 

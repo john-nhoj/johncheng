@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Certificate } from '@aws-cdk/aws-certificatemanager';
+import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
 import { App, Construct, Stack } from '@aws-cdk/core';
 import 'source-map-support/register';
 import { Acm } from '../lib/acm';
@@ -15,6 +16,7 @@ class WebStack extends Stack {
     const cluster = new Cluster(this, 'johncheng-cluster-construct');
     const alb = new ApplicationLoadBalancer(this, 'johncheng-alb-construct', {
       certificate: this.getCertificate(),
+      hostedZone: this.getHostedZone(),
       cluster,
     });
     new Cloudfront(this, 'johncheng-cloudfront-construct', {
@@ -23,6 +25,25 @@ class WebStack extends Stack {
     new CodeBuild(this, 'johncheng-codebuild-construct', { alb });
   }
 
+  private getCertificate() {
+    const certificateArn = 'arn:aws:...';
+    const certificate = Certificate.fromCertificateArn(
+      this,
+      'johncheng-certificate',
+      certificateArn
+    );
+    return certificate;
+  }
+
+  private getHostedZone(): IHostedZone {
+    const hostedZoneId = '';
+    const hostedZone = HostedZone.fromHostedZoneId(
+      this,
+      'johncheng-hosted-zone',
+      hostedZoneId
+    );
+    return hostedZone;
+  }
 }
 
 const app = new App();

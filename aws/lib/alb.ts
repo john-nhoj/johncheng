@@ -1,14 +1,15 @@
-import { LoadBalancerV2Origin } from '@aws-cdk/aws-cloudfront-origins';
+import { ICertificate } from '@aws-cdk/aws-certificatemanager';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { ContainerImage } from '@aws-cdk/aws-ecs';
 import { ApplicationLoadBalancedFargateService } from '@aws-cdk/aws-ecs-patterns';
+import { IHostedZone } from '@aws-cdk/aws-route53';
 import { Construct } from '@aws-cdk/core';
-import { Acm } from './acm';
 import { Cluster } from './cluster';
 
 interface AlbProps {
   readonly cluster: Cluster;
-  readonly acm: Acm;
+  readonly certificate: ICertificate;
+  readonly hostedZone: IHostedZone;
 }
 
 class ApplicationLoadBalancer extends Construct {
@@ -18,10 +19,7 @@ class ApplicationLoadBalancer extends Construct {
   constructor(scope: Construct, id: string, props: AlbProps) {
     super(scope, id);
 
-    const {
-      cluster,
-      acm: { certificate, hostedZone },
-    } = props;
+    const { cluster, certificate, hostedZone } = props;
 
     this.ecrRepo = new Repository(this, 'ECRRepo');
     this.alb = new ApplicationLoadBalancedFargateService(
