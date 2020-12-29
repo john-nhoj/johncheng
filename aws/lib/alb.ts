@@ -21,10 +21,12 @@ class ApplicationLoadBalancer extends Construct {
 
     const { cluster, certificate, hostedZone } = props;
 
-    this.ecrRepo = new Repository(this, 'ECRRepo');
+    this.ecrRepo = new Repository(this, 'johncheng-public', {
+      repositoryName: 'johncheng-public',
+    });
     this.alb = new ApplicationLoadBalancedFargateService(
       this,
-      'MyFargateService',
+      'johncheng-fargate-alb',
       {
         cluster: cluster.ecsCluster,
         certificate,
@@ -35,6 +37,7 @@ class ApplicationLoadBalancer extends Construct {
         taskImageOptions: {
           image: ContainerImage.fromEcrRepository(this.ecrRepo),
         },
+        serviceName: 'johncheng-fargate',
       }
     );
     this.loadBalancer = this.alb.loadBalancer;

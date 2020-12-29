@@ -19,6 +19,7 @@ class Cloudfront extends Construct {
       defaultBehavior: {
         origin: new LoadBalancerV2Origin(loadBalancer),
       },
+      comment: 'johncheng-cloudfront',
     });
   }
 }

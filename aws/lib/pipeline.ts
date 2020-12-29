@@ -37,8 +37,8 @@ class CodePipeline extends Construct {
     const sourceOutput = new Artifact('SrcOutput');
     const cdkBuildOutput = new Artifact('CdkBuildOutput');
 
-    new Pipeline(this, 'MyFirstPipeline', {
-      pipelineName: 'MyPipeline',
+    new Pipeline(this, 'johncheng-code-pipeline', {
+      pipelineName: 'johncheng-prod',
       crossAccountKeys: false,
       stages: [
         this.createSourceStage(sourceOutput, owner, repo, secret),
@@ -46,21 +46,6 @@ class CodePipeline extends Construct {
         this.createDeployStage(cdkBuildOutput, alb.alb.service),
       ],
     });
-  }
-  createDeployStage(
-    cdkBuildOutput: Artifact,
-    service: FargateService
-  ): StageProps {
-    return {
-      stageName: 'Deploy',
-      actions: [
-        new EcsDeployAction({
-          actionName: 'ECSDeploy_Action',
-          input: cdkBuildOutput,
-          service,
-        }),
-      ],
-    };
   }
 
   private createSourceStage(
@@ -73,7 +58,7 @@ class CodePipeline extends Construct {
       stageName: 'Source',
       actions: [
         new GitHubSourceAction({
-          actionName: 'Checkout',
+          actionName: 'Source',
           output: sourceOutput,
           owner,
           repo,
@@ -94,10 +79,26 @@ class CodePipeline extends Construct {
       stageName: 'Build',
       actions: [
         new CodeBuildAction({
-          actionName: 'Html_Build',
+          actionName: 'BuildApp',
           project: codeBuildProject,
           input: sourceOutput,
           outputs: [cdkBuildOutput],
+        }),
+      ],
+    };
+  }
+
+  createDeployStage(
+    cdkBuildOutput: Artifact,
+    service: FargateService
+  ): StageProps {
+    return {
+      stageName: 'Deploy',
+      actions: [
+        new EcsDeployAction({
+          actionName: 'AssetUpload',
+          input: cdkBuildOutput,
+          service,
         }),
       ],
     };
