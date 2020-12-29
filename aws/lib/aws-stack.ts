@@ -79,6 +79,7 @@ export class AwsStack extends cdk.Stack {
           loadBalancedFargateService.loadBalancer
         ),
       },
+      comment: 'johncheng-cloudfront',
     });
 
     const sourceOutput = new codepipeline.Artifact('SrcOutput');
