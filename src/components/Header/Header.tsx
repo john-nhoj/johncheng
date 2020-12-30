@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
-import { HeaderLink } from './HeaderLink';
-import { LogoLink } from './LogoLink';
+import { HeaderLink } from 'components/Link/HeaderLink';
+import { LogoLink } from 'components/Link/LogoLink';
 
 export const Header = () => {
   const [menuOpen, toggleMenu] = useState(false);
