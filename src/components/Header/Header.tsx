@@ -32,7 +32,7 @@ export const Header = () => {
         'bg-white',
         'sm:px-20',
         'md:px-40',
-        'xl:px-96',
+        'xl:px-gutter',
         'flex',
         'flex-col',
         'md:flex-row',
