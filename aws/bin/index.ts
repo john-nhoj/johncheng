@@ -7,11 +7,11 @@ import { Cloudfront } from '../lib/cloudfront';
 import { Cluster } from '../lib/cluster';
 import { CodeBuild } from '../lib/codeBuild';
 import { prodConfig } from '../config/prod';
-import { ConfigProps } from '../typings/config';
+import { Configuration } from '../typings/config';
 import { getServiceIdentifier } from '../utils';
 
 interface WebStackProps {
-  config: ConfigProps;
+  config: Configuration;
 }
 
 class WebStack extends Stack {
