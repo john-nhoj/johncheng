@@ -1,30 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
-type HeaderLinkProps = {
-  label: string;
-  link: string;
-  className?: string;
-};
-
-const HeaderLink = ({ label, link, className }: HeaderLinkProps) => (
-  <a
-    href={link}
-    className={classNames(
-      className,
-      'flex',
-      'items-center',
-      'first:ml-0',
-      'ml-8',
-      'header-link'
-    )}
-  >
-    {label}
-  </a>
-);
+import { HeaderLink } from 'components/Link/HeaderLink';
+import { LogoLink } from 'components/Link/LogoLink';
 
 export const Header = () => {
   const [menuOpen, toggleMenu] = useState(false);
+
+  const onClickHandler = () => toggleMenu(!menuOpen);
 
   return (
     <header
@@ -42,12 +25,7 @@ export const Header = () => {
       )}
     >
       <div className="flex justify-between">
-        <a
-          href="/"
-          className={classNames('flex', 'items-center', 'p-2', 'md:p-4')}
-        >
-          <Image src="/logo.svg" alt="Website logo" width={200} height={28} />
-        </a>
+        <LogoLink href="/" onClick={onClickHandler} />
         <button
           className="flex items-center p-2 md:hidden"
           onClick={() => toggleMenu(!menuOpen)}
@@ -75,9 +53,9 @@ export const Header = () => {
           }
         )}
       >
-        <HeaderLink label="Home" link="/" />
-        <HeaderLink label="About" link="/about" />
-        <HeaderLink label="Blog" link="/blog" />
+        <HeaderLink label="Home" href="/" onClick={onClickHandler} />
+        <HeaderLink label="About" href="/about" onClick={onClickHandler} />
+        <HeaderLink label="Blog" href="/blog" onClick={onClickHandler} />
       </div>
     </header>
   );

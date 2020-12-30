@@ -10,6 +10,8 @@ exports[`Header 1`] = `
     <a
       className="flex items-center p-2 md:p-4"
       href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         style={
@@ -151,18 +153,24 @@ exports[`Header 1`] = `
     <a
       className="flex items-center first:ml-0 ml-8 header-link"
       href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       Home
     </a>
     <a
       className="flex items-center first:ml-0 ml-8 header-link"
       href="/about"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       About
     </a>
     <a
       className="flex items-center first:ml-0 ml-8 header-link"
       href="/blog"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       Blog
     </a>
