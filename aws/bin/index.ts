@@ -48,9 +48,10 @@ class WebStack extends Stack {
 }
 
 const app = new App();
-new Acm(app, 'prod-acmstack', {
+const identifier = getServiceIdentifier(prodConfig);
+new Acm(app, `${identifier}-certificate`, {
   env: { region: 'us-east-1' },
   config: prodConfig,
 });
-new WebStack(app, 'prod-webstack', { config: prodConfig });
+new WebStack(app, `${identifier}-service`, { config: prodConfig });
 app.synth();
