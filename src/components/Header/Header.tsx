@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
 import { HeaderLink } from './HeaderLink';
+import { LogoLink } from './LogoLink';
 
 export const Header = () => {
   const [menuOpen, toggleMenu] = useState(false);
@@ -22,12 +23,7 @@ export const Header = () => {
       )}
     >
       <div className="flex justify-between">
-        <a
-          href="/"
-          className={classNames('flex', 'items-center', 'p-2', 'md:p-4')}
-        >
-          <Image src="/logo.svg" alt="Website logo" width={200} height={28} />
-        </a>
+        <LogoLink href="/" onClick={() => toggleMenu(!menuOpen)} />
         <button
           className="flex items-center p-2 md:hidden"
           onClick={() => toggleMenu(!menuOpen)}
@@ -55,9 +51,9 @@ export const Header = () => {
           }
         )}
       >
-        <HeaderLink label="Home" link="/" />
-        <HeaderLink label="About" link="/about" />
-        <HeaderLink label="Blog" link="/blog" />
+        <HeaderLink label="Home" href="/" />
+        <HeaderLink label="About" href="/about" />
+        <HeaderLink label="Blog" href="/blog" />
       </div>
     </header>
   );
