@@ -5,6 +5,7 @@ const prodConfig: ConfigProps = {
   environment: 'prod',
   certificateArn: 'TBA',
   hostedZoneId: 'TBA',
+  accountId: '984719580259',
 };
 
 export { prodConfig };
