@@ -11,24 +11,28 @@ import { CodeBuild } from '../lib/codeBuild';
 import { prodConfig } from '../config/prod';
 import { ConfigProps } from '../typings/config';
 
+interface WebStackProps {
+  config: ConfigProps;
+}
+
 class WebStack extends Stack {
-  constructor(scope: Construct, id: string, props: ConfigProps) {
+  constructor(scope: Construct, id: string, props: WebStackProps) {
     super(scope, id);
 
-    const { serviceName, certificateArn, hostedZoneId } = props;
+    const { config } = props;
+    const { serviceName } = config;
 
     const cluster = new Cluster(
       this,
       `${serviceName}-cluster-construct`,
-      props
+      config
     );
     const alb = new ApplicationLoadBalancer(
       this,
       `${serviceName}-alb-construct`,
       {
-        certificate: this.getCertificate(serviceName, certificateArn),
-        hostedZone: this.getHostedZone(serviceName, hostedZoneId),
         cluster,
+        config,
       }
     );
     new Cloudfront(this, `${serviceName}-cloudfront-construct`, {
@@ -36,32 +40,11 @@ class WebStack extends Stack {
     });
     new CodeBuild(this, `${serviceName}-codebuild-construct`, { alb });
   }
-
-  private getCertificate(serviceName: string, certificateArn: string) {
-    const certificate = Certificate.fromCertificateArn(
-      this,
-      `${serviceName}-certificate`,
-      certificateArn
-    );
-    return certificate;
-  }
-
-  private getHostedZone(
-    serviceName: string,
-    hostedZoneId: string
-  ): IHostedZone {
-    const hostedZone = HostedZone.fromHostedZoneId(
-      this,
-      `${serviceName}-hosted-zone`,
-      hostedZoneId
-    );
-    return hostedZone;
-  }
 }
 
 const app = new App();
 new Acm(app, 'acm-stack', {
   env: { region: 'us-east-1' },
 });
-new WebStack(app, 'prod-webstack', prodConfig);
+new WebStack(app, 'prod-webstack', { config: prodConfig });
 app.synth();
