@@ -1,27 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
-type HeaderLinkProps = {
-  label: string;
-  link: string;
-  className?: string;
-};
-
-const HeaderLink = ({ label, link, className }: HeaderLinkProps) => (
-  <a
-    href={link}
-    className={classNames(
-      className,
-      'flex',
-      'items-center',
-      'first:ml-0',
-      'ml-8',
-      'header-link'
-    )}
-  >
-    {label}
-  </a>
-);
+import { HeaderLink } from './HeaderLink';
 
 export const Header = () => {
   const [menuOpen, toggleMenu] = useState(false);
