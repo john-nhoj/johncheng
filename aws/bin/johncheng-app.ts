@@ -15,15 +15,19 @@ class WebStack extends Stack {
   constructor(scope: Construct, id: string, props: ConfigProps) {
     super(scope, id);
 
-    const { serviceName, certificateArn } = props;
+    const { serviceName, certificateArn, hostedZoneId } = props;
 
-    const cluster = new Cluster(this, `${serviceName}-cluster-construct`);
+    const cluster = new Cluster(
+      this,
+      `${serviceName}-cluster-construct`,
+      props
+    );
     const alb = new ApplicationLoadBalancer(
       this,
       `${serviceName}-alb-construct`,
       {
         certificate: this.getCertificate(serviceName, certificateArn),
-        hostedZone: this.getHostedZone(serviceName),
+        hostedZone: this.getHostedZone(serviceName, hostedZoneId),
         cluster,
       }
     );
@@ -42,8 +46,10 @@ class WebStack extends Stack {
     return certificate;
   }
 
-  private getHostedZone(serviceName: string): IHostedZone {
-    const hostedZoneId = '';
+  private getHostedZone(
+    serviceName: string,
+    hostedZoneId: string
+  ): IHostedZone {
     const hostedZone = HostedZone.fromHostedZoneId(
       this,
       `${serviceName}-hosted-zone`,
