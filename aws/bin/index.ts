@@ -9,6 +9,7 @@ import { CodeBuild } from '../lib/codeBuild';
 import { prodConfig } from '../config/prod';
 import { Configuration } from '../typings/config';
 import { getServiceIdentifier } from '../utils';
+import { CodePipeline } from '../lib/pipeline';
 
 interface WebStackProps {
   config: Configuration;
@@ -39,10 +40,16 @@ class WebStack extends Stack {
       alb,
       identifier,
     });
-    new CodeBuild(this, `${identifier}-codebuild-construct`, {
+    const codeBuild = new CodeBuild(this, `${identifier}-codebuild-construct`, {
       alb,
       config,
       identifier,
+    });
+    new CodePipeline(this, `${identifier}-codepipeline-construct`, {
+      codeBuild,
+      alb,
+      identifier,
+      config,
     });
   }
 }
@@ -50,7 +57,6 @@ class WebStack extends Stack {
 const app = new App();
 const identifier = getServiceIdentifier(prodConfig);
 new Acm(app, `${identifier}-certificate`, {
-  env: { region: 'us-east-1' },
   config: prodConfig,
 });
 new WebStack(app, `${identifier}-service`, { config: prodConfig });
