@@ -14,7 +14,7 @@ export interface LinkProps extends NextJsLinkProps {
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export const Link = ({ href, children, className, ...rest }: LinkProps) => (
   <NextJsLink href={href}>
-    <a className={classNames(className, 'flex', 'items-center')} {...rest}>
+    <a className={classNames('flex', 'items-center', className)} {...rest}>
       {children}
     </a>
   </NextJsLink>
