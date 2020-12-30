@@ -10,6 +10,7 @@ import { Cluster } from '../lib/cluster';
 import { CodeBuild } from '../lib/codeBuild';
 import { prodConfig } from '../config/prod';
 import { ConfigProps } from '../typings/config';
+import { getServiceIdentifier } from '../utils';
 
 interface WebStackProps {
   config: ConfigProps;
@@ -20,25 +21,25 @@ class WebStack extends Stack {
     super(scope, id);
 
     const { config } = props;
-    const { serviceName } = config;
+    const identifier = getServiceIdentifier(config);
 
     const cluster = new Cluster(
       this,
-      `${serviceName}-cluster-construct`,
+      `${identifier}-cluster-construct`,
       config
     );
     const alb = new ApplicationLoadBalancer(
       this,
-      `${serviceName}-alb-construct`,
+      `${identifier}-alb-construct`,
       {
         cluster,
         config,
       }
     );
-    new Cloudfront(this, `${serviceName}-cloudfront-construct`, {
+    new Cloudfront(this, `${identifier}-cloudfront-construct`, {
       alb,
     });
-    new CodeBuild(this, `${serviceName}-codebuild-construct`, { alb });
+    new CodeBuild(this, `${identifier}-codebuild-construct`, { alb });
   }
 }
 
