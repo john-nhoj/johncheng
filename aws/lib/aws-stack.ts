@@ -11,6 +11,8 @@ import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 import * as codeBuild from '@aws-cdk/aws-codebuild';
 import * as ssm from '@aws-cdk/aws-ssm';
 import * as ecr from '@aws-cdk/aws-ecr';
+import { HostedZone } from '@aws-cdk/aws-route53';
+import { Tags } from '@aws-cdk/core';
 
 export interface PipelineStackProps extends cdk.StackProps {
   readonly githubToken: string;
@@ -21,16 +23,19 @@ export class AwsStack extends cdk.Stack {
     super(scope, id, props);
 
     // Route53
-    const myHostedZone = new route53.HostedZone(this, 'HostedZone', {
+    const hostedZone = new route53.HostedZone(this, 'HostedZone', {
       zoneName: 'johncheng.me',
+      comment: 'Hosted zone for my personal website',
     });
 
     // ACM
     const certificate = new acm.Certificate(this, 'Certificate', {
       domainName: 'johncheng.me',
       subjectAlternativeNames: ['*.johncheng.me'],
-      validation: acm.CertificateValidation.fromDns(myHostedZone),
+      validation: acm.CertificateValidation.fromDns(hostedZone),
     });
+
+    Tags.of(certificate).add('Name', 'johncheng-certificate');
 
     console.info(
       `Do not forget to change the Registar Nameservers to point to the Hosted one`
@@ -39,10 +44,12 @@ export class AwsStack extends cdk.Stack {
     // Origin
     // VPC
     const vpc = new ec2.Vpc(this, 'public VPC');
+    Tags.of(vpc).add('Name', 'johncheng-vpc');
 
     // Cluster
     const cluster = new ecs.Cluster(this, 'myCluster', {
       vpc,
+      clusterName: 'johncheng-cluster',
     });
 
     const ecrRepo = new ecr.Repository(this, 'ECRRepo');
@@ -55,14 +62,17 @@ export class AwsStack extends cdk.Stack {
         cluster,
         certificate,
         domainName: 'johncheng.me',
-        domainZone: myHostedZone,
+        domainZone: hostedZone,
         redirectHTTP: true,
         publicLoadBalancer: true,
         taskImageOptions: {
           image: ecs.ContainerImage.fromEcrRepository(ecrRepo),
         },
+        serviceName: 'johncheng-fargate',
       }
     );
+
+    Tags.of(loadBalancedFargateService).add('Name', 'johncheng-alb');
 
     // Cloudfront
     new cloudfront.Distribution(this, 'myDist', {
@@ -71,6 +81,7 @@ export class AwsStack extends cdk.Stack {
           loadBalancedFargateService.loadBalancer
         ),
       },
+      comment: 'johncheng-cloudfront',
     });
 
     const sourceOutput = new codepipeline.Artifact('SrcOutput');
