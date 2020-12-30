@@ -1,15 +1,19 @@
-import { ICertificate } from '@aws-cdk/aws-certificatemanager';
+import { Certificate, ICertificate } from '@aws-cdk/aws-certificatemanager';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { ContainerImage } from '@aws-cdk/aws-ecs';
 import { ApplicationLoadBalancedFargateService } from '@aws-cdk/aws-ecs-patterns';
-import { IHostedZone } from '@aws-cdk/aws-route53';
+import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
 import { Construct } from '@aws-cdk/core';
+import { ConfigProps } from '../typings/config';
+import {
+  extractIdentifierFromConfigAndReturnAsset,
+  getServiceIdentifier,
+} from '../utils';
 import { Cluster } from './cluster';
 
 interface AlbProps {
   readonly cluster: Cluster;
-  readonly certificate: ICertificate;
-  readonly hostedZone: IHostedZone;
+  readonly config: ConfigProps;
 }
 
 class ApplicationLoadBalancer extends Construct {
@@ -19,7 +23,15 @@ class ApplicationLoadBalancer extends Construct {
   constructor(scope: Construct, id: string, props: AlbProps) {
     super(scope, id);
 
-    const { cluster, certificate, hostedZone } = props;
+    const { cluster } = props;
+    const certificate = extractIdentifierFromConfigAndReturnAsset<ICertificate>(
+      props.config,
+      this.getCertificate
+    );
+    const hostedZone = extractIdentifierFromConfigAndReturnAsset<IHostedZone>(
+      props.config,
+      this.getHostedZone
+    );
 
     this.ecrRepo = new Repository(this, 'johncheng-public', {
       repositoryName: 'johncheng-public',
@@ -42,6 +54,27 @@ class ApplicationLoadBalancer extends Construct {
     );
     this.loadBalancer = this.alb.loadBalancer;
     this.ecrRepo.grantPull(this.alb.taskDefinition.executionRole!);
+  }
+
+  private getCertificate(
+    identifier: string,
+    certificateArn: string
+  ): ICertificate {
+    const certificate = Certificate.fromCertificateArn(
+      this,
+      `${identifier}-certificate`,
+      certificateArn
+    );
+    return certificate;
+  }
+
+  private getHostedZone(identifier: string, hostedZoneId: string): IHostedZone {
+    const hostedZone = HostedZone.fromHostedZoneId(
+      this,
+      `${identifier}-hosted-zone`,
+      hostedZoneId
+    );
+    return hostedZone;
   }
 }
 
