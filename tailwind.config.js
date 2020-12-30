@@ -14,6 +14,11 @@ module.exports = {
     fontFamily: {
       ubuntu: ['Ubuntu', 'sans-serif'],
     },
+    extend: {
+      spacing: {
+        gutter: '19rem',
+      },
+    },
   },
   variants: {
     extend: {

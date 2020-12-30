@@ -2,7 +2,7 @@
 
 exports[`Header 1`] = `
 <header
-  className="bg-white sm:px-20 md:px-40 xl:px-96 flex flex-col md:flex-row border-solid border-b-2 border-border"
+  className="bg-white sm:px-20 md:px-40 xl:px-gutter flex flex-col md:flex-row border-solid border-b-2 border-border"
 >
   <div
     className="flex justify-between"
