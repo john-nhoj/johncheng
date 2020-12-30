@@ -11,5 +11,8 @@ const config: Config.InitialOptions = {
     '!**/.next/**',
   ],
   roots: ['src'],
+  moduleNameMapper: {
+    '^(components/.+)$': '<rootDir>/src/$1/',
+  },
 };
 export default config;
