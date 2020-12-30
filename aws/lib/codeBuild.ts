@@ -4,10 +4,13 @@ import {
   PipelineProject,
 } from '@aws-cdk/aws-codebuild';
 import { Construct } from '@aws-cdk/core';
+import { ConfigProps } from '../typings/config';
 import { ApplicationLoadBalancer } from './alb';
 
 interface CodeBuildProps {
   alb: ApplicationLoadBalancer;
+  config: ConfigProps;
+  identifier: string;
 }
 
 class CodeBuild extends Construct {
@@ -15,25 +18,35 @@ class CodeBuild extends Construct {
   constructor(scope: Construct, id: string, props: CodeBuildProps) {
     super(scope, id);
 
-    const { alb } = props;
+    // The second alb is actually the fargate service
+    // More info: https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-ecs-patterns.ApplicationLoadBalancedFargateService.html
+    const {
+      alb: { ecrRepo, alb: fargateService },
+      config: { accountId },
+      identifier,
+    } = props;
 
-    const containerName = alb.alb.taskDefinition.defaultContainer!
+    const containerName = fargateService.taskDefinition.defaultContainer!
       .containerName;
 
-    this.codeBuildProject = new PipelineProject(this, 'Project', {
-      buildSpec: this.getBuildSpec(),
-      environment: {
-        buildImage: LinuxBuildImage.STANDARD_1_0,
-        privileged: true,
-      },
-      environmentVariables: {
-        REPOSITORY_URI: { value: alb.ecrRepo.repositoryUri },
-        CONTAINER_NAME: { value: containerName },
-      },
-    });
+    this.codeBuildProject = new PipelineProject(
+      this,
+      `${identifier}-code-build`,
+      {
+        buildSpec: this.getBuildSpec(accountId),
+        environment: {
+          buildImage: LinuxBuildImage.STANDARD_1_0,
+          privileged: true,
+        },
+        environmentVariables: {
+          REPOSITORY_URI: { value: ecrRepo.repositoryUri },
+          CONTAINER_NAME: { value: containerName },
+        },
+      }
+    );
   }
 
-  private getBuildSpec(): BuildSpec {
+  private getBuildSpec(accountId: string): BuildSpec {
     return BuildSpec.fromObject({
       version: '0.2',
       phases: {
@@ -54,7 +67,7 @@ class CodeBuild extends Construct {
         pre_build: {
           commands: [
             'aws --version',
-            'aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 984719580259.dkr.ecr.eu-west-1.amazonaws.com',
+            `aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin ${accountId}.dkr.ecr.eu-west-1.amazonaws.com`,
             'COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)',
             'IMAGE_TAG=${COMMIT_HASH:=latest}',
             'npm run test',

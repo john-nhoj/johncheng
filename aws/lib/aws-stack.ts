@@ -11,7 +11,6 @@ import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 import * as codeBuild from '@aws-cdk/aws-codebuild';
 import * as ssm from '@aws-cdk/aws-ssm';
 import * as ecr from '@aws-cdk/aws-ecr';
-import { HostedZone } from '@aws-cdk/aws-route53';
 import { Tags } from '@aws-cdk/core';
 
 export interface PipelineStackProps extends cdk.StackProps {
