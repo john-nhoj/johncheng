@@ -5,7 +5,8 @@ export const getServiceIdentifier = (config: ConfigProps): string => {
   return `${serviceName}-${environment}`;
 };
 
-const getConfigKey = (config: ConfigProps, key: ConfigPropsKeys) => config[key];
+export const getConfigKey = (config: ConfigProps, key: ConfigPropsKeys) =>
+  config[key];
 
 export const extractIdentifierFromConfigAndReturnAsset = <T>(
   config: ConfigProps,
