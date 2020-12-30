@@ -5,10 +5,7 @@ import { ApplicationLoadBalancedFargateService } from '@aws-cdk/aws-ecs-patterns
 import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
 import { Construct } from '@aws-cdk/core';
 import { ConfigProps } from '../typings/config';
-import {
-  extractIdentifierFromConfigAndReturnAsset,
-  getServiceIdentifier,
-} from '../utils';
+import { extractIdentifierFromConfigAndReturnAsset } from '../utils';
 import { Cluster } from './cluster';
 
 interface AlbProps {

@@ -1,7 +1,6 @@
 import { Vpc } from '@aws-cdk/aws-ec2';
 import { Cluster as EcsCluster } from '@aws-cdk/aws-ecs';
 import { Construct, Tags } from '@aws-cdk/core';
-import { ConfigProps } from '../typings/config';
 
 class Cluster extends Construct {
   readonly ecsCluster: EcsCluster;

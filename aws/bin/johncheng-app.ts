@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import { Certificate } from '@aws-cdk/aws-certificatemanager';
-import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
 import { App, Construct, Stack, StackProps } from '@aws-cdk/core';
 import 'source-map-support/register';
 import { Acm } from '../lib/acm';
