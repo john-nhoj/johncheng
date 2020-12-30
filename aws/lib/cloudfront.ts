@@ -5,6 +5,7 @@ import { ApplicationLoadBalancer } from './alb';
 
 interface CloudfrontProps {
   alb: ApplicationLoadBalancer;
+  identifier: string;
 }
 class Cloudfront extends Construct {
   readonly cf: Distribution;
@@ -13,13 +14,14 @@ class Cloudfront extends Construct {
 
     const {
       alb: { loadBalancer },
+      identifier,
     } = props;
 
-    this.cf = new Distribution(this, 'myDist', {
+    this.cf = new Distribution(this, `${identifier}-cloudfront`, {
       defaultBehavior: {
         origin: new LoadBalancerV2Origin(loadBalancer),
       },
-      comment: 'johncheng-cloudfront',
+      comment: `${identifier}-cloudfront`,
     });
   }
 }

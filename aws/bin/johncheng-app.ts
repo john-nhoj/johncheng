@@ -38,6 +38,7 @@ class WebStack extends Stack {
     );
     new Cloudfront(this, `${identifier}-cloudfront-construct`, {
       alb,
+      identifier,
     });
     new CodeBuild(this, `${identifier}-codebuild-construct`, { alb });
   }
