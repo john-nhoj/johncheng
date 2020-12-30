@@ -41,7 +41,11 @@ class WebStack extends Stack {
       alb,
       identifier,
     });
-    new CodeBuild(this, `${identifier}-codebuild-construct`, { alb });
+    new CodeBuild(this, `${identifier}-codebuild-construct`, {
+      alb,
+      config,
+      identifier,
+    });
   }
 }
 
