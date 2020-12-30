@@ -1,16 +1,14 @@
-import { ConfigProps } from '../typings/config';
-import {
-  getServiceIdentifier,
-  getConfigKey,
-  extractIdentifierFromConfigAndReturnAsset,
-} from '../utils';
+import { Configuration } from '../typings/config';
+import { getServiceIdentifier, getConfigKey } from '../utils';
 
 test('Utils test', () => {
-  const mockConfig: ConfigProps = {
+  const mockConfig: Configuration = {
     serviceName: 'foobar',
     environment: 'prod',
     certificateArn: 'TBA',
     hostedZoneId: 'TBA',
+    hostedZoneName: 'TBA',
+    domainName: 'TBA',
     accountId: '9xxxxxxxxx59',
   };
 
@@ -19,13 +17,4 @@ test('Utils test', () => {
 
   expect(getServiceIdentifier(mockConfig)).toBe('foobar-prod');
   expect(getConfigKey(mockConfig, 'serviceName')).toBe(mockConfig.serviceName);
-  expect(
-    extractIdentifierFromConfigAndReturnAsset(
-      mockConfig,
-      'serviceName',
-      mockCallback
-    )
-  ).toBe(
-    `${mockConfig.serviceName}-${mockConfig.environment}-${mockConfig.serviceName}`
-  );
 });

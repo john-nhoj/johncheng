@@ -7,11 +7,12 @@ import { Cloudfront } from '../lib/cloudfront';
 import { Cluster } from '../lib/cluster';
 import { CodeBuild } from '../lib/codeBuild';
 import { prodConfig } from '../config/prod';
-import { ConfigProps } from '../typings/config';
+import { Configuration } from '../typings/config';
 import { getServiceIdentifier } from '../utils';
+import { CodePipeline } from '../lib/pipeline';
 
 interface WebStackProps {
-  config: ConfigProps;
+  config: Configuration;
 }
 
 class WebStack extends Stack {
@@ -39,17 +40,24 @@ class WebStack extends Stack {
       alb,
       identifier,
     });
-    new CodeBuild(this, `${identifier}-codebuild-construct`, {
+    const codeBuild = new CodeBuild(this, `${identifier}-codebuild-construct`, {
       alb,
       config,
       identifier,
+    });
+    new CodePipeline(this, `${identifier}-codepipeline-construct`, {
+      codeBuild,
+      alb,
+      identifier,
+      config,
     });
   }
 }
 
 const app = new App();
-new Acm(app, 'acm-stack', {
-  env: { region: 'us-east-1' },
+const identifier = getServiceIdentifier(prodConfig);
+new Acm(app, `${identifier}-certificate`, {
+  config: prodConfig,
 });
-new WebStack(app, 'prod-webstack', { config: prodConfig });
+new WebStack(app, `${identifier}-service`, { config: prodConfig });
 app.synth();
