@@ -14,6 +14,7 @@ import { Cluster } from './cluster';
 interface AlbProps {
   readonly cluster: Cluster;
   readonly config: ConfigProps;
+  readonly identifier: string;
 }
 
 class ApplicationLoadBalancer extends Construct {
@@ -23,24 +24,24 @@ class ApplicationLoadBalancer extends Construct {
   constructor(scope: Construct, id: string, props: AlbProps) {
     super(scope, id);
 
-    const { cluster } = props;
+    const { cluster, config, identifier } = props;
     const certificate = extractIdentifierFromConfigAndReturnAsset<ICertificate>(
-      props.config,
+      config,
       'certificateArn',
       this.getCertificate
     );
     const hostedZone = extractIdentifierFromConfigAndReturnAsset<IHostedZone>(
-      props.config,
+      config,
       'hostedZoneId',
       this.getHostedZone
     );
 
-    this.ecrRepo = new Repository(this, 'johncheng-public', {
-      repositoryName: 'johncheng-public',
+    this.ecrRepo = new Repository(this, `${identifier}-public`, {
+      repositoryName: `${identifier}-public`,
     });
     this.alb = new ApplicationLoadBalancedFargateService(
       this,
-      'johncheng-fargate-alb',
+      `${identifier}-fargate-alb`,
       {
         cluster: cluster.ecsCluster,
         certificate,
@@ -51,7 +52,7 @@ class ApplicationLoadBalancer extends Construct {
         taskImageOptions: {
           image: ContainerImage.fromEcrRepository(this.ecrRepo),
         },
-        serviceName: 'johncheng-fargate',
+        serviceName: `${identifier}-fargate`,
       }
     );
     this.loadBalancer = this.alb.loadBalancer;

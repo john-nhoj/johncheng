@@ -34,6 +34,7 @@ class WebStack extends Stack {
       {
         cluster,
         config,
+        identifier,
       }
     );
     new Cloudfront(this, `${identifier}-cloudfront-construct`, {
