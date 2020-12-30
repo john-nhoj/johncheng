@@ -4,12 +4,12 @@ import {
   PipelineProject,
 } from '@aws-cdk/aws-codebuild';
 import { Construct } from '@aws-cdk/core';
-import { ConfigProps } from '../typings/config';
+import { Configuration } from '../typings/config';
 import { ApplicationLoadBalancer } from './alb';
 
 interface CodeBuildProps {
   alb: ApplicationLoadBalancer;
-  config: ConfigProps;
+  config: Configuration;
   identifier: string;
 }
 
