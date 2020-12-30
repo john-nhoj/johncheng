@@ -9,12 +9,15 @@ import {
 import { FargateService } from '@aws-cdk/aws-ecs';
 import { StringParameter } from '@aws-cdk/aws-ssm';
 import { Construct, SecretValue } from '@aws-cdk/core';
+import { Configuration } from '../typings/config';
 import { ApplicationLoadBalancer } from './alb';
 import { CodeBuild } from './codeBuild';
 
 interface CodePipelineProps {
   codeBuild: CodeBuild;
   alb: ApplicationLoadBalancer;
+  identifier: string;
+  config: Configuration;
 }
 class CodePipeline extends Construct {
   constructor(scope: Construct, id: string, props: CodePipelineProps) {
@@ -22,28 +25,32 @@ class CodePipeline extends Construct {
 
     const {
       codeBuild: { codeBuildProject },
-      alb,
+      alb: { alb: fargateService },
+      config: { environment, serviceName },
+      identifier,
     } = props;
 
-    const secret = SecretValue.secretsManager('/johncheng/dev/GITHUB_TOKEN');
+    const secret = SecretValue.secretsManager(
+      `/${serviceName}/dev/GITHUB_TOKEN`
+    );
     const repo = StringParameter.valueForStringParameter(
       this,
-      '/johncheng/dev/GITHUB_REPO'
+      `/${serviceName}/dev/GITHUB_REPO`
     );
     const owner = StringParameter.valueForStringParameter(
       this,
-      '/johncheng/dev/GITHUB_OWNER'
+      `/${serviceName}/dev/GITHUB_OWNER`
     );
     const sourceOutput = new Artifact('SrcOutput');
     const cdkBuildOutput = new Artifact('CdkBuildOutput');
 
-    new Pipeline(this, 'johncheng-code-pipeline', {
-      pipelineName: 'johncheng-prod',
+    new Pipeline(this, `${serviceName}-code-pipeline`, {
+      pipelineName: identifier,
       crossAccountKeys: false,
       stages: [
-        this.createSourceStage(sourceOutput, owner, repo, secret),
+        this.createSourceStage(sourceOutput, owner, repo, secret, environment),
         this.createBuildStage(codeBuildProject, sourceOutput, cdkBuildOutput),
-        this.createDeployStage(cdkBuildOutput, alb.alb.service),
+        this.createDeployStage(cdkBuildOutput, fargateService.service),
       ],
     });
   }
@@ -52,7 +59,8 @@ class CodePipeline extends Construct {
     sourceOutput: Artifact,
     owner: string,
     repo: string,
-    oauthToken: SecretValue
+    oauthToken: SecretValue,
+    environment: string
   ): StageProps {
     return {
       stageName: 'Source',
@@ -64,7 +72,7 @@ class CodePipeline extends Construct {
           repo,
           oauthToken,
           trigger: GitHubTrigger.WEBHOOK,
-          branch: 'deploy-prod',
+          branch: `deploy-${environment}`,
         }),
       ],
     };
