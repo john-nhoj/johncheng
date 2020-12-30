@@ -38,13 +38,12 @@ class ApplicationLoadBalancer extends Construct {
       hostedZone,
       identifier
     );
-    this.alb = this.createAlb(config, identifier, albConfig);
+    this.alb = this.createAlb(identifier, albConfig);
     this.loadBalancer = this.alb.loadBalancer;
     this.ecrRepo.grantPull(this.alb.taskDefinition.executionRole!);
   }
 
   private createAlb(
-    config: Configuration,
     identifier: string,
     albConfig: ApplicationLoadBalancedFargateServiceProps
   ): ApplicationLoadBalancedFargateService {
