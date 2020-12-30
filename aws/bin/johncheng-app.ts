@@ -47,6 +47,8 @@ class WebStack extends Stack {
 }
 
 const app = new App();
-new Acm(app, 'johncheng-acm-stack');
+new Acm(app, 'johncheng-acm-stack', {
+  env: { region: 'us-east-1' },
+});
 new WebStack(app, 'johncheng-webstack');
 app.synth();

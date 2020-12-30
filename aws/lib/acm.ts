@@ -3,13 +3,13 @@ import {
   CertificateValidation,
 } from '@aws-cdk/aws-certificatemanager';
 import { HostedZone } from '@aws-cdk/aws-route53';
-import { Construct, Stack, Tags } from '@aws-cdk/core';
+import { Construct, Stack, StackProps, Tags } from '@aws-cdk/core';
 
 class Acm extends Stack {
   readonly hostedZone: HostedZone;
   readonly certificate: Certificate;
-  constructor(scope: Construct, id: string) {
-    super(scope, id);
+  constructor(scope: Construct, id: string, props?: StackProps) {
+    super(scope, id, props);
 
     // Route53
     this.hostedZone = new HostedZone(this, 'HostedZone', {
