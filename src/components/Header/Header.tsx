@@ -7,6 +7,8 @@ import { LogoLink } from './LogoLink';
 export const Header = () => {
   const [menuOpen, toggleMenu] = useState(false);
 
+  const onClickHandler = () => toggleMenu(!menuOpen);
+
   return (
     <header
       className={classNames(
@@ -23,7 +25,7 @@ export const Header = () => {
       )}
     >
       <div className="flex justify-between">
-        <LogoLink href="/" onClick={() => toggleMenu(!menuOpen)} />
+        <LogoLink href="/" onClick={onClickHandler} />
         <button
           className="flex items-center p-2 md:hidden"
           onClick={() => toggleMenu(!menuOpen)}
@@ -51,9 +53,9 @@ export const Header = () => {
           }
         )}
       >
-        <HeaderLink label="Home" href="/" />
-        <HeaderLink label="About" href="/about" />
-        <HeaderLink label="Blog" href="/blog" />
+        <HeaderLink label="Home" href="/" onClick={onClickHandler} />
+        <HeaderLink label="About" href="/about" onClick={onClickHandler} />
+        <HeaderLink label="Blog" href="/blog" onClick={onClickHandler} />
       </div>
     </header>
   );
