@@ -4,3 +4,5 @@ export interface ConfigProps {
   certificateArn: string;
   hostedZoneId: string;
 }
+
+export type ConfigPropsKeys = keyof ConfigProps;

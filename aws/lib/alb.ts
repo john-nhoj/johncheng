@@ -26,10 +26,12 @@ class ApplicationLoadBalancer extends Construct {
     const { cluster } = props;
     const certificate = extractIdentifierFromConfigAndReturnAsset<ICertificate>(
       props.config,
+      'certificateArn',
       this.getCertificate
     );
     const hostedZone = extractIdentifierFromConfigAndReturnAsset<IHostedZone>(
       props.config,
+      'hostedZoneId',
       this.getHostedZone
     );
 
