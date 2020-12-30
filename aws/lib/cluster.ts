@@ -6,17 +6,15 @@ import { ConfigProps } from '../typings/config';
 class Cluster extends Construct {
   readonly ecsCluster: EcsCluster;
 
-  constructor(scope: Construct, id: string, props: ConfigProps) {
+  constructor(scope: Construct, id: string, identifier: string) {
     super(scope, id);
 
-    const { serviceName, environment } = props;
-
     const vpc = new Vpc(this, 'public VPC');
-    Tags.of(vpc).add('Name', `${serviceName}-${environment}-vpc`);
+    Tags.of(vpc).add('Name', `${identifier}-vpc`);
 
     this.ecsCluster = new EcsCluster(this, 'EcsCluster', {
       vpc,
-      clusterName: `${serviceName}-${environment}-cluster`,
+      clusterName: `${identifier}-cluster`,
     });
   }
 

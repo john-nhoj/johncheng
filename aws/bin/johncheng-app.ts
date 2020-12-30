@@ -26,7 +26,7 @@ class WebStack extends Stack {
     const cluster = new Cluster(
       this,
       `${identifier}-cluster-construct`,
-      config
+      identifier
     );
     const alb = new ApplicationLoadBalancer(
       this,
