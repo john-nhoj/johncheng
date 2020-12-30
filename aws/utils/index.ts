@@ -1,19 +1,9 @@
-import { ConfigProps, ConfigPropsKeys } from '../typings/config';
+import { Configuration, ConfigurationKeys } from '../typings/config';
 
-export const getServiceIdentifier = (config: ConfigProps): string => {
+export const getServiceIdentifier = (config: Configuration): string => {
   const { serviceName, environment } = config;
   return `${serviceName}-${environment}`;
 };
 
-export const getConfigKey = (config: ConfigProps, key: ConfigPropsKeys) =>
+export const getConfigKey = (config: Configuration, key: ConfigurationKeys) =>
   config[key];
-
-export const extractIdentifierFromConfigAndReturnAsset = <T>(
-  config: ConfigProps,
-  key: ConfigPropsKeys,
-  callback: (identifier: string, assetId: string) => T
-): T => {
-  const identifier = getServiceIdentifier(config);
-  const assetId = getConfigKey(config, key);
-  return callback(identifier, assetId);
-};

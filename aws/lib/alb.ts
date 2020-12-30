@@ -1,80 +1,102 @@
 import { Certificate, ICertificate } from '@aws-cdk/aws-certificatemanager';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { ContainerImage } from '@aws-cdk/aws-ecs';
-import { ApplicationLoadBalancedFargateService } from '@aws-cdk/aws-ecs-patterns';
+import {
+  ApplicationLoadBalancedFargateService,
+  ApplicationLoadBalancedFargateServiceProps,
+} from '@aws-cdk/aws-ecs-patterns';
 import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
 import { Construct } from '@aws-cdk/core';
-import { ConfigProps } from '../typings/config';
-import { extractIdentifierFromConfigAndReturnAsset } from '../utils';
+import { Configuration } from '../typings/config';
 import { Cluster } from './cluster';
+import { IApplicationLoadBalancer } from '@aws-cdk/aws-elasticloadbalancingv2';
 
 interface AlbProps {
   readonly cluster: Cluster;
-  readonly config: ConfigProps;
+  readonly config: Configuration;
   readonly identifier: string;
 }
 
 class ApplicationLoadBalancer extends Construct {
   readonly alb: ApplicationLoadBalancedFargateService;
-  readonly loadBalancer;
+  readonly loadBalancer: IApplicationLoadBalancer;
   readonly ecrRepo: Repository;
   constructor(scope: Construct, id: string, props: AlbProps) {
     super(scope, id);
 
     const { cluster, config, identifier } = props;
-    const certificate = extractIdentifierFromConfigAndReturnAsset<ICertificate>(
-      config,
-      'certificateArn',
-      this.getCertificate
-    );
-    const hostedZone = extractIdentifierFromConfigAndReturnAsset<IHostedZone>(
-      config,
-      'hostedZoneId',
-      this.getHostedZone
-    );
 
-    this.ecrRepo = new Repository(this, `${identifier}-public`, {
-      repositoryName: `${identifier}-public`,
-    });
-    this.alb = new ApplicationLoadBalancedFargateService(
-      this,
-      `${identifier}-fargate-alb`,
-      {
-        cluster: cluster.ecsCluster,
-        certificate,
-        domainName: 'johncheng.me',
-        domainZone: hostedZone,
-        redirectHTTP: true,
-        publicLoadBalancer: true,
-        taskImageOptions: {
-          image: ContainerImage.fromEcrRepository(this.ecrRepo),
-        },
-        serviceName: `${identifier}-fargate`,
-      }
+    const certificate = this.getCertificate(config, identifier);
+    const hostedZone = this.getHostedZone(config, identifier);
+
+    this.ecrRepo = this.createEcrRepo(config, identifier);
+
+    const albConfig = this.createAlbConfig(
+      config,
+      cluster,
+      certificate,
+      hostedZone,
+      identifier
     );
+    this.alb = this.createAlb(config, identifier, albConfig);
     this.loadBalancer = this.alb.loadBalancer;
     this.ecrRepo.grantPull(this.alb.taskDefinition.executionRole!);
   }
 
-  private getCertificate(
+  private createAlb(
+    config: Configuration,
     identifier: string,
-    certificateArn: string
-  ): ICertificate {
-    const certificate = Certificate.fromCertificateArn(
+    albConfig: ApplicationLoadBalancedFargateServiceProps
+  ): ApplicationLoadBalancedFargateService {
+    return new ApplicationLoadBalancedFargateService(
       this,
-      `${identifier}-certificate`,
-      certificateArn
+      `${identifier}-fargate-alb`,
+      albConfig
     );
-    return certificate;
   }
 
-  private getHostedZone(identifier: string, hostedZoneId: string): IHostedZone {
-    const hostedZone = HostedZone.fromHostedZoneId(
+  private createAlbConfig(
+    config: Configuration,
+    cluster: Cluster,
+    certificate: ICertificate,
+    hostedZone: IHostedZone,
+    identifier: string
+  ) {
+    return {
+      cluster: cluster.ecsCluster,
+      certificate,
+      domainName: config.domainName,
+      domainZone: hostedZone,
+      redirectHTTP: true,
+      publicLoadBalancer: true,
+      taskImageOptions: {
+        image: ContainerImage.fromEcrRepository(this.ecrRepo),
+      },
+      serviceName: `${identifier}-fargate`,
+    };
+  }
+
+  private createEcrRepo(config: Configuration, identifier: string): Repository {
+    return new Repository(this, `${identifier}-public`, {
+      repositoryName: `${identifier}-public`,
+    });
+  }
+  private getHostedZone(config: Configuration, identifier: string) {
+    return HostedZone.fromHostedZoneAttributes(
       this,
       `${identifier}-hosted-zone`,
-      hostedZoneId
+      {
+        hostedZoneId: config.hostedZoneId,
+        zoneName: config.hostedZoneName,
+      }
     );
-    return hostedZone;
+  }
+  private getCertificate(config: Configuration, identifier: string) {
+    return Certificate.fromCertificateArn(
+      this,
+      `${identifier}-certificate`,
+      config.certificateArn
+    );
   }
 }
 
