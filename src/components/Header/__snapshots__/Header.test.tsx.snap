@@ -8,7 +8,7 @@ exports[`Header 1`] = `
     className="flex justify-between"
   >
     <a
-      className="flex items-center p-2 md:p-4"
+      className="flex items-center py-2 md:py-4"
       href="/"
       onClick={[Function]}
       onMouseEnter={[Function]}
@@ -148,7 +148,7 @@ exports[`Header 1`] = `
     </button>
   </div>
   <div
-    className="flex md:flex flex-1 items-center flex-row justify-end p-2 hidden"
+    className="flex md:flex flex-1 items-center flex-row justify-end hidden"
   >
     <a
       className="flex items-center first:ml-0 ml-8 header-link"
