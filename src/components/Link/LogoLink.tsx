@@ -8,6 +8,6 @@ import { Link, LinkProps } from 'components/Link/Link';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export const LogoLink = (props: LinkProps) => (
   <Link className={classNames('layout__padding--full')} {...props}>
-    <Image src="/logo.svg" alt="Website logo" width={200} height={28} />
+    <Image src="/logo.svg" alt="Website logo" width={45} height={45} />
   </Link>
 );
