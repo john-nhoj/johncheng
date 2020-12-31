@@ -1,0 +1,25 @@
+.wrapper-padding {
+  @apply p-2;
+}
+
+@screen sm {
+  .wrapper-gutter {
+    @apply px-20;
+  }
+}
+
+@screen md {
+  .wrapper-gutter {
+    @apply px-40;
+  }
+
+  .wrapper-padding {
+    @apply p-4;
+  }
+}
+
+@screen xl {
+  .wrapper-gutter {
+    @apply px-gutter;
+  }
+}
