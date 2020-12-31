@@ -1,25 +1,33 @@
-.wrapper-padding {
+.layout__padding--full {
   @apply p-2;
 }
 
+.layout__padding--horizontal {
+  @apply px-2;
+}
+
 @screen sm {
-  .wrapper__x-gutter {
-    @apply px-20;
+  .layout__margin--horizontal {
+    @apply mx-20;
   }
 }
 
 @screen md {
-  .wrapper__x-gutter {
-    @apply px-40;
+  .layout__margin--horizontal {
+    @apply mx-40;
   }
 
-  .wrapper-padding {
+  .layout__padding--full {
     @apply p-4;
+  }
+
+  .layout__padding--horizontal {
+    @apply px-4;
   }
 }
 
 @screen xl {
-  .wrapper__x-gutter {
-    @apply px-gutter;
+  .layout__margin--horizontal {
+    @apply mx-gutter;
   }
 }
