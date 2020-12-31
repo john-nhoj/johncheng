@@ -5,9 +5,10 @@ import { HeaderLink } from 'components/Link/HeaderLink';
 import { LogoLink } from 'components/Link/LogoLink';
 
 export const Header = () => {
-  const [menuOpen, toggleMenu] = useState(false);
+  const [menuOpen, setMenuState] = useState(false);
 
-  const onClickHandler = () => toggleMenu(!menuOpen);
+  const closeMenu = () => setMenuState(false);
+  const toggleMenu = () => setMenuState(!menuOpen);
 
   return (
     <header
@@ -27,10 +28,10 @@ export const Header = () => {
         )}
       >
         <div className="flex justify-between">
-          <LogoLink href="/" onClick={onClickHandler} />
+          <LogoLink href="/" onClick={closeMenu} />
           <button
             className="flex items-center p-2 md:hidden"
-            onClick={() => toggleMenu(!menuOpen)}
+            onClick={toggleMenu}
           >
             <Image
               src="/menu.svg"
@@ -55,9 +56,9 @@ export const Header = () => {
             }
           )}
         >
-          <HeaderLink label="Home" href="/" onClick={onClickHandler} />
-          <HeaderLink label="About" href="/about" onClick={onClickHandler} />
-          <HeaderLink label="Blog" href="/blog" onClick={onClickHandler} />
+          <HeaderLink label="Home" href="/" onClick={closeMenu} />
+          <HeaderLink label="About" href="/about" onClick={closeMenu} />
+          <HeaderLink label="Blog" href="/blog" onClick={closeMenu} />
         </div>
       </div>
     </header>
