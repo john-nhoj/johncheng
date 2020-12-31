@@ -9,7 +9,8 @@ export const HeaderLink = ({ label, ...rest }: LinkProps) => (
   <Link
     className={classNames(
       'first:ml-0',
-      'ml-8',
+      'ml-2',
+
       'layout__padding--full',
       'header-link'
     )}
