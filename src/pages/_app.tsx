@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Header />
-      <main className={classNames('wrapper-gutter')}>
+      <main className={classNames('wrapper__x-gutter')}>
         <Component {...pageProps} />
       </main>
     </div>

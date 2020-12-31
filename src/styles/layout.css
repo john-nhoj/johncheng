@@ -3,13 +3,13 @@
 }
 
 @screen sm {
-  .wrapper-gutter {
+  .wrapper__x-gutter {
     @apply px-20;
   }
 }
 
 @screen md {
-  .wrapper-gutter {
+  .wrapper__x-gutter {
     @apply px-40;
   }
 
@@ -19,7 +19,7 @@
 }
 
 @screen xl {
-  .wrapper-gutter {
+  .wrapper__x-gutter {
     @apply px-gutter;
   }
 }

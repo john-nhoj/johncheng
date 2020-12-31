@@ -19,7 +19,7 @@ export const Header = () => {
         'border-solid',
         'border-b-2',
         'border-border',
-        'wrapper-gutter'
+        'wrapper__x-gutter'
       )}
     >
       <div className="flex justify-between">
