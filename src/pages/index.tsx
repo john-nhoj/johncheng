@@ -1,7 +1,10 @@
-import classNames from 'classnames';
+import React from 'react';
+import { Introduction } from 'components/Introduction/Introduction';
 
 const Home = () => (
-  <div className={classNames('layout__padding--horizontal')}>Welcome</div>
+  <div>
+    <Introduction />
+  </div>
 );
 
 export default Home;

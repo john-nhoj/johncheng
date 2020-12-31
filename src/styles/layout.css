@@ -7,22 +7,21 @@
 }
 
 @screen sm {
-  .layout__margin--horizontal {
-    @apply mx-20;
-  }
 }
 
 @screen md {
-  .layout__margin--horizontal {
-    @apply mx-40;
-  }
-
   .layout__padding--full {
     @apply p-4;
   }
 
   .layout__padding--horizontal {
     @apply px-4;
+  }
+}
+
+@screen lg {
+  .layout__margin--horizontal {
+    @apply mx-20;
   }
 }
 

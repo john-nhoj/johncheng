@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Picture toggle button 1`] = `
+<button
+  className="relative m-2 uppercase"
+  onClick={[Function]}
+>
+  <div
+    className="absolute bg-red w-full h-full transform -skew-x-12 -z-10"
+  />
+  <span
+    className="p-2"
+  >
+    Toggle button
+  </span>
+</button>
+`;
