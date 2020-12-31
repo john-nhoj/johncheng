@@ -13,15 +13,13 @@ export const Header = () => {
     <header
       className={classNames(
         'bg-white',
-        'sm:px-20',
-        'md:px-40',
-        'xl:px-gutter',
         'flex',
         'flex-col',
         'md:flex-row',
         'border-solid',
         'border-b-2',
-        'border-border'
+        'border-border',
+        'wrapper-gutter'
       )}
     >
       <div className="flex justify-between">
