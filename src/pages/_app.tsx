@@ -8,9 +8,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Header />
-      <div className={classNames('sm:px-20', 'md:px-40', 'xl:px-gutter')}>
+      <main className={classNames('sm:px-20', 'md:px-40', 'xl:px-gutter')}>
         <Component {...pageProps} />
-      </div>
+      </main>
     </div>
   );
 }
