@@ -2,178 +2,182 @@
 
 exports[`Header 1`] = `
 <header
-  className="bg-white sm:px-20 md:px-40 xl:px-gutter flex flex-col md:flex-row border-solid border-b-2 border-border"
+  className="bg-white border-solid border-b-2 border-border"
 >
   <div
-    className="flex justify-between"
+    className="flex flex-col md:flex-row layout__margin--horizontal"
   >
-    <a
-      className="flex items-center p-2 md:p-4"
-      href="/"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
+    <div
+      className="flex justify-between"
     >
-      <div
-        style={
-          Object {
-            "boxSizing": "border-box",
-            "display": "inline-block",
-            "margin": 0,
-            "maxWidth": "100%",
-            "overflow": "hidden",
-            "position": "relative",
-          }
-        }
+      <a
+        className="flex items-center layout__padding--full"
+        href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           style={
             Object {
               "boxSizing": "border-box",
-              "display": "block",
+              "display": "inline-block",
+              "margin": 0,
               "maxWidth": "100%",
+              "overflow": "hidden",
+              "position": "relative",
             }
           }
         >
-          <img
-            alt=""
-            aria-hidden={true}
-            role="presentation"
-            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
+          <div
             style={
               Object {
+                "boxSizing": "border-box",
                 "display": "block",
                 "maxWidth": "100%",
               }
             }
+          >
+            <img
+              alt=""
+              aria-hidden={true}
+              role="presentation"
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
+              style={
+                Object {
+                  "display": "block",
+                  "maxWidth": "100%",
+                }
+              }
+            />
+          </div>
+          <img
+            alt="Website logo"
+            decoding="async"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style={
+              Object {
+                "border": "none",
+                "bottom": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": 0,
+                "left": 0,
+                "margin": "auto",
+                "maxHeight": "100%",
+                "maxWidth": "100%",
+                "minHeight": "100%",
+                "minWidth": "100%",
+                "objectFit": undefined,
+                "objectPosition": undefined,
+                "padding": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "visibility": "hidden",
+                "width": 0,
+              }
+            }
           />
         </div>
-        <img
-          alt="Website logo"
-          decoding="async"
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-          style={
-            Object {
-              "border": "none",
-              "bottom": 0,
-              "boxSizing": "border-box",
-              "display": "block",
-              "height": 0,
-              "left": 0,
-              "margin": "auto",
-              "maxHeight": "100%",
-              "maxWidth": "100%",
-              "minHeight": "100%",
-              "minWidth": "100%",
-              "objectFit": undefined,
-              "objectPosition": undefined,
-              "padding": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "visibility": "hidden",
-              "width": 0,
-            }
-          }
-        />
-      </div>
-    </a>
-    <button
-      className="flex items-center p-2 md:hidden"
-      onClick={[Function]}
-    >
-      <div
-        style={
-          Object {
-            "boxSizing": "border-box",
-            "display": "inline-block",
-            "margin": 0,
-            "maxWidth": "100%",
-            "overflow": "hidden",
-            "position": "relative",
-          }
-        }
+      </a>
+      <button
+        className="flex items-center p-2 md:hidden"
+        onClick={[Function]}
       >
         <div
           style={
             Object {
               "boxSizing": "border-box",
-              "display": "block",
+              "display": "inline-block",
+              "margin": 0,
               "maxWidth": "100%",
+              "overflow": "hidden",
+              "position": "relative",
             }
           }
         >
-          <img
-            alt=""
-            aria-hidden={true}
-            role="presentation"
-            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+          <div
             style={
               Object {
+                "boxSizing": "border-box",
                 "display": "block",
                 "maxWidth": "100%",
               }
             }
+          >
+            <img
+              alt=""
+              aria-hidden={true}
+              role="presentation"
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+              style={
+                Object {
+                  "display": "block",
+                  "maxWidth": "100%",
+                }
+              }
+            />
+          </div>
+          <img
+            alt="Menu toggle"
+            className="md:hidden"
+            decoding="async"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style={
+              Object {
+                "border": "none",
+                "bottom": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": 0,
+                "left": 0,
+                "margin": "auto",
+                "maxHeight": "100%",
+                "maxWidth": "100%",
+                "minHeight": "100%",
+                "minWidth": "100%",
+                "objectFit": undefined,
+                "objectPosition": undefined,
+                "padding": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "visibility": "hidden",
+                "width": 0,
+              }
+            }
           />
         </div>
-        <img
-          alt="Menu toggle"
-          className="md:hidden"
-          decoding="async"
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-          style={
-            Object {
-              "border": "none",
-              "bottom": 0,
-              "boxSizing": "border-box",
-              "display": "block",
-              "height": 0,
-              "left": 0,
-              "margin": "auto",
-              "maxHeight": "100%",
-              "maxWidth": "100%",
-              "minHeight": "100%",
-              "minWidth": "100%",
-              "objectFit": undefined,
-              "objectPosition": undefined,
-              "padding": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "visibility": "hidden",
-              "width": 0,
-            }
-          }
-        />
-      </div>
-    </button>
-  </div>
-  <div
-    className="flex md:flex flex-1 items-center flex-row justify-end p-2 hidden"
-  >
-    <a
-      className="flex items-center first:ml-0 ml-8 header-link"
-      href="/"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
+      </button>
+    </div>
+    <div
+      className="flex md:flex flex-1 items-center flex-row justify-end hidden"
     >
-      Home
-    </a>
-    <a
-      className="flex items-center first:ml-0 ml-8 header-link"
-      href="/about"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-    >
-      About
-    </a>
-    <a
-      className="flex items-center first:ml-0 ml-8 header-link"
-      href="/blog"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-    >
-      Blog
-    </a>
+      <a
+        className="flex items-center first:ml-0 ml-2 layout__padding--full header-link"
+        href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Home
+      </a>
+      <a
+        className="flex items-center first:ml-0 ml-2 layout__padding--full header-link"
+        href="/about"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        About
+      </a>
+      <a
+        className="flex items-center first:ml-0 ml-2 layout__padding--full header-link"
+        href="/blog"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Blog
+      </a>
+    </div>
   </div>
 </header>
 `;
