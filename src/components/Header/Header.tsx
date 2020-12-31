@@ -42,12 +42,12 @@ export const Header = () => {
       <div
         className={classNames(
           'flex',
+          // The second `md:flex` is needed if user changes the viewport in responsive mode for example.
           'md:flex',
           'flex-1',
           'items-center',
           'flex-row',
           'justify-end',
-          'p-2',
           {
             hidden: !menuOpen,
           }
