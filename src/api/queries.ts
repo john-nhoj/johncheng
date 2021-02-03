@@ -1,3 +1,5 @@
+import { postFields } from './schemas';
+
 const { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } = process.env;
 
 export const getPost = (slug: string) => {
@@ -5,10 +7,7 @@ export const getPost = (slug: string) => {
   {
     blogPostCollection(where: {slug: "${slug}"}, limit: 1) {
       items {
-        slug
-        title,
-        description,
-        body
+        ${postFields}
       }
     }
   }
