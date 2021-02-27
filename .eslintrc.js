@@ -6,7 +6,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
-    'prettier/@typescript-eslint', // Disables ESLint rules that would conflict with prettier
     'plugin:jest/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',

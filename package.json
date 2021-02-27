@@ -12,44 +12,40 @@
     "test": "jest",
     "tsc": "tsc",
     "update-snapshots": "jest --updateSnapshot",
-    "update-dependencies": "ncu -u"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run prepush"
-    }
+    "update-dependencies": "ncu -u",
+    "postinstall": "husky install"
   },
   "dependencies": {
-    "contentful": "^8.1.7",
-    "next": "10.0.4",
+    "contentful": "8.1.7",
+    "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.11",
-    "@types/jest": "^26.0.19",
-    "@types/node": "^14.14.16",
-    "@types/react": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.11.0",
-    "@typescript-eslint/parser": "^4.11.0",
-    "autoprefixer": "^10.1.0",
-    "babel-jest": "^26.6.3",
-    "classnames": "^2.2.6",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^4.3.6",
-    "jest": "^26.6.3",
-    "npm-check-updates": "^10.2.5",
-    "postcss": "^8.2.1",
-    "prettier": "^2.2.1",
-    "react-test-renderer": "^17.0.1",
-    "tailwindcss": "^2.0.2",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.3"
+    "@types/classnames": "2.2.11",
+    "@types/jest": "26.0.20",
+    "@types/node": "14.14.31",
+    "@types/react": "17.0.2",
+    "@typescript-eslint/eslint-plugin": "4.15.2",
+    "@typescript-eslint/parser": "4.15.2",
+    "autoprefixer": "10.2.4",
+    "babel-jest": "26.6.3",
+    "classnames": "2.2.6",
+    "eslint": "7.20.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-jest": "24.1.5",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "husky": "5.1.1",
+    "jest": "26.6.3",
+    "npm-check-updates": "11.1.9",
+    "postcss": "8.2.6",
+    "prettier": "2.2.1",
+    "react-test-renderer": "17.0.1",
+    "tailwindcss": "2.0.3",
+    "ts-node": "9.1.1",
+    "typescript": "4.2.2"
   }
 }
