@@ -12,12 +12,8 @@
     "test": "jest",
     "tsc": "tsc",
     "update-snapshots": "jest --updateSnapshot",
-    "update-dependencies": "ncu -u"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run prepush"
-    }
+    "update-dependencies": "ncu -u",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "contentful": "8.1.7",
