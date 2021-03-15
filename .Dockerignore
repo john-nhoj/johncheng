@@ -3,11 +3,11 @@
 
 # Allow specific files and directories
 ## 'node_modules' is needed to run the server
-!/node_modules/**
+#!/node_modules/**
 ## '.next' contains the production build for Next.js
-!/.next/**
+#!/.next/**
 ## 'dist' has the compiled TS files
-!/dist/**
+#!/dist/**
 ## 'package.json' is used to run the node commands
 !/package.json
 
