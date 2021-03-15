@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: chengjo0/johncheng:v1.5
+          image: gcr.io/PROJECT_ID/johncheng-prod:COMMIT_SHA
           ports:
             - containerPort: 3000
