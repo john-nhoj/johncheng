@@ -14,8 +14,8 @@
 # Ignore unnecessary files inside allowed directories
 ## This should go after the allowed directories
 ## These cover directories that are over 10M big and not needed during server production run
-/node_modules/@condenast
-/node_modules/bigrig
-/node_modules/node
-/node_modules/rxjs
-/node_modules/puppeteer
+#/node_modules/@condenast
+#/node_modules/bigrig
+#/node_modules/node
+#/node_modules/rxjs
+#/node_modules/puppeteer
