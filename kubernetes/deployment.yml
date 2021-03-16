@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: gcr.io/PROJECT_ID/johncheng-prod:COMMIT_SHA
+          image: gcr.io/PROJECT_ID/CLUSTER_NAME:COMMIT_SHA
           ports:
             - containerPort: 3000
