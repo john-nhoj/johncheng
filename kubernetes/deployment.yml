@@ -1,0 +1,24 @@
+# Deployment config file
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: johncheng-prod
+  # labels:
+  #   app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend # This selector label needs to be the same as the one in the metadata below
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: gcr.io/PROJECT_ID/CLUSTER_NAME:COMMIT_SHA
+          ports:
+            - containerPort: 3000
