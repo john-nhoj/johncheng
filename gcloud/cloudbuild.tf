@@ -23,6 +23,14 @@ resource "google_cloudbuild_trigger" "build-trigger" {
     }
 
     step {
+      name = "gcr.io/cloud-builders/npm"
+      args = [
+        "run",
+        "build"
+      ]
+    }
+
+    step {
       name = "gcr.io/cloud-builders/docker"
       args = [
         "build",
