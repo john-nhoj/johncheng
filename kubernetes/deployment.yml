@@ -1,3 +1,5 @@
+# Deployment config file
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -9,7 +11,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: frontend # This selector label needs to be the same as the one in the metadata below
   template:
     metadata:
       labels:
