@@ -34,4 +34,5 @@ yarn-error.log*
 
 # Terraform
 */**/.terraform/
+*/**/terraform.tfstate
 */**/terraform.tfstate*
