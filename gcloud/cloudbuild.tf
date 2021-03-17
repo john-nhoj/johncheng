@@ -1,3 +1,11 @@
+data "google_secret_manager_secret_version" "contentful_access_token" {
+  secret = "PROD_CONTENTFUL_ACCESS_TOKEN"
+}
+
+data "google_secret_manager_secret_version" "contentful_space_id" {
+  secret = "PROD_CONTENTFUL_SPACE_ID"
+}
+
 resource "google_cloudbuild_trigger" "build-trigger" {
   name        = "${var.repository_name}-prod"
   description = "Cloud build hook that deploys the service for production"
@@ -27,6 +35,10 @@ resource "google_cloudbuild_trigger" "build-trigger" {
       args = [
         "run",
         "build"
+      ]
+      env = [ 
+        "CONTENTFUL_ACCESS_TOKEN=${data.google_secret_manager_secret_version.contentful_access_token.secret_data}",
+        "CONTENTFUL_SPACE_ID=${data.google_secret_manager_secret_version.contentful_space_id.secret_data}"
       ]
     }
 
