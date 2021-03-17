@@ -1,6 +1,5 @@
 import React from 'react';
-import { client } from 'api/client';
-import { getAuthor, getPost } from 'api/queries';
+import { getAllBlogPostsSlugs, getAuthor, getPost } from 'api/queries';
 
 const Post = ({ post, author }) => (
   <div>
@@ -24,16 +23,11 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-interface PostEntry {
-  title: string;
-  slug?: string;
-}
 export const getStaticPaths = async () => {
-  const allEntries = await client.getEntries<PostEntry>({
-    content_type: 'blogPost',
-  });
-  const posts = allEntries.items ?? [];
-  const paths = posts.map((post) => `/posts/${post.fields.slug}`);
+  console.debug('Fetching static paths');
+  const allEntries = await getAllBlogPostsSlugs();
+  const posts = allEntries?.data?.blogPostCollection?.items ?? [];
+  const paths = posts.map((post) => `/posts/${post.slug}`);
   return { paths, fallback: false };
 };
 
