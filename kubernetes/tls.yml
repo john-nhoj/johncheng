@@ -1,9 +1,8 @@
-apiVersion: v1
-kind: Secret
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
 metadata:
-  name: johncheng-prod-tls
   namespace: johncheng-prod
-data:
-  tls.crt: base64 encoded cert
-  tls.key: base64 encoded key
-type: kubernetes.io/tls
+  name: johncheng-prod-certificate
+spec:
+  domains:
+    - johncheng.me

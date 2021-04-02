@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: johncheng-prod-https-redirect
+  namespace: johncheng-prod
+spec:
+  redirectToHttps:
+    enabled: true
