@@ -53,6 +53,36 @@ exports[`Header 1`] = `
               }
             />
           </div>
+          <noscript>
+            <img
+              alt="Website logo"
+              decoding="async"
+              src="/logo.svg"
+              srcSet="/_next/image?url=%2Flogo.svg&w=48&q=75 1x, /_next/image?url=%2Flogo.svg&w=96&q=75 2x"
+              style={
+                Object {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": undefined,
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+          </noscript>
           <img
             alt="Website logo"
             decoding="async"
@@ -76,7 +106,6 @@ exports[`Header 1`] = `
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
-                "visibility": "hidden",
                 "width": 0,
               }
             }
@@ -124,6 +153,37 @@ exports[`Header 1`] = `
               }
             />
           </div>
+          <noscript>
+            <img
+              alt="Menu toggle"
+              className="md:hidden"
+              decoding="async"
+              src="/menu.svg"
+              srcSet="/_next/image?url=%2Fmenu.svg&w=32&q=75 1x, /_next/image?url=%2Fmenu.svg&w=64&q=75 2x"
+              style={
+                Object {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": undefined,
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+          </noscript>
           <img
             alt="Menu toggle"
             className="md:hidden"
@@ -148,7 +208,6 @@ exports[`Header 1`] = `
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
-                "visibility": "hidden",
                 "width": 0,
               }
             }
