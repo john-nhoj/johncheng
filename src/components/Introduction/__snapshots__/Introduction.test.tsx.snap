@@ -86,6 +86,37 @@ exports[`Introduction Section 1`] = `
           }
         />
       </div>
+      <noscript>
+        <img
+          alt="Picture of site owner"
+          className="rounded-xl"
+          decoding="async"
+          src="/johncheng.jpg"
+          srcSet="/_next/image?url=%2Fjohncheng.jpg&w=384&q=75 1x, /_next/image?url=%2Fjohncheng.jpg&w=640&q=75 2x"
+          style={
+            Object {
+              "border": "none",
+              "bottom": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "height": 0,
+              "left": 0,
+              "margin": "auto",
+              "maxHeight": "100%",
+              "maxWidth": "100%",
+              "minHeight": "100%",
+              "minWidth": "100%",
+              "objectFit": undefined,
+              "objectPosition": undefined,
+              "padding": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 0,
+            }
+          }
+        />
+      </noscript>
       <img
         alt="Picture of site owner"
         className="rounded-xl"
@@ -110,7 +141,6 @@ exports[`Introduction Section 1`] = `
             "position": "absolute",
             "right": 0,
             "top": 0,
-            "visibility": "hidden",
             "width": 0,
           }
         }
