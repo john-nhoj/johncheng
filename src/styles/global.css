@@ -18,7 +18,5 @@ html {
 }
 body {
   font-family: Ubuntu, Helvetica Neue, Helvetica, Arial;
-  /* font-size: 14px; */
   color: #333;
-  @apply bg-gray;
 }

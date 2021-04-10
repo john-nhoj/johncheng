@@ -1,63 +1,49 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { PictureToggleButton } from 'components/Buttons/PictureToggleButton';
 
 const Introduction = () => {
-  const [showChillPicture, togglePicture] = useState(false);
-
-  const showBusinessPicture = () => togglePicture(false);
-  const showPicture = () => togglePicture(true);
-
   return (
     <div
       className={classNames(
         'flex',
-        'layout__padding--full',
-        'mt-8',
+        'flex-col',
         'justify-center',
-        'items=center'
+        'w-full',
+        'mt-16'
       )}
     >
+      <Image
+        src="/memoji.svg"
+        alt="Memoji of John Cheng"
+        width={190}
+        height={190}
+      />
       <div
         className={classNames(
           'flex',
-          'flex-col',
           'justify-center',
-          'items-center',
-          'text-center'
+          'mt-4',
+          'text-4xl',
+          'lg:text-5xl'
         )}
       >
-        <h2 className={classNames('text-5xl', 'font-bold')}>John Cheng</h2>
-        <p
-          className={classNames(
-            'uppercase',
-            'mt-4',
-            'flex',
-            'flex-col',
-            'xl:flex-row',
-            'items-center'
-          )}
-        >
-          <PictureToggleButton
-            onClickHandler={showBusinessPicture}
-            label="Software Developer"
-          />{' '}
-          and{' '}
-          <PictureToggleButton
-            onClickHandler={showPicture}
-            label="badminton player"
-          />
-        </p>
+        Hi, I'm John&nbsp;
+        <span role="img" aria-label="Waving emoji">
+          &#128075;
+        </span>
       </div>
-      <div className={classNames('hidden', 'md:flex', 'ml-24')}>
-        <Image
-          src={showChillPicture ? '/chill_me.jpeg' : '/johncheng.jpg'}
-          alt="Picture of site owner"
-          width={300}
-          height={300}
-          className={classNames('rounded-xl')}
-        />
+      <div
+        className={classNames(
+          'flex',
+          'justify-center',
+          'text-center',
+          'mt-10',
+          'text-2xl',
+          'lg:text-3xl'
+        )}
+      >
+        I am a Software Engineer and Badminton Enthusiast.
       </div>
     </div>
   );
