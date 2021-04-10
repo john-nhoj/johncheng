@@ -19,9 +19,6 @@ module.exports = {
       spacing: {
         gutter: '19rem',
       },
-      zIndex: {
-        '-10': '-10',
-      },
     },
   },
   variants: {
