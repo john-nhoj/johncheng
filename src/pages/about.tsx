@@ -5,6 +5,7 @@ const About = () => (
   <div>
     <Head>
       <title>John Cheng – About</title>
+      <meta name="description" content="John Cheng – About page" />
     </Head>
     About page
   </div>

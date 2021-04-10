@@ -6,6 +6,7 @@ const Home = () => (
   <div>
     <Head>
       <title>John Cheng – Personal website</title>
+      <meta name="description" content="Welcome page" />
     </Head>
     <Introduction />
   </div>

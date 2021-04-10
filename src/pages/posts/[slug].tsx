@@ -6,6 +6,10 @@ const Post = ({ post, author }) => (
   <div>
     <Head>
       <title>John Cheng – {post.title}</title>
+      <meta
+        name="description"
+        content={`BlogPost – Author: ${author.name}, ${post.title}`}
+      />
     </Head>
     <h1>{post.title}</h1>
     <h2>{author.name}</h2>
