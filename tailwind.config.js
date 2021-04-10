@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     colors: {
       black: '#000',
-      white: '#FDFDFD',
+      white: '#FFF',
       gray: '#F4F5F7',
       border: '#E0E0E0',
-      red: '#EB5757',
+      purple: '#704CD9',
     },
     fontFamily: {
       ubuntu: ['Ubuntu', 'sans-serif'],
