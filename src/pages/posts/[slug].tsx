@@ -1,8 +1,12 @@
 import React from 'react';
+import Head from 'next/head';
 import { getAllBlogPostsSlugs, getAuthor, getPost } from 'api/queries';
 
 const Post = ({ post, author }) => (
   <div>
+    <Head>
+      <title>John Cheng – {post.title}</title>
+    </Head>
     <h1>{post.title}</h1>
     <h2>{author.name}</h2>
     <p>{post.body}</p>
