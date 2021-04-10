@@ -2,126 +2,51 @@
 
 exports[`Introduction Section 1`] = `
 <div
-  className="flex layout__padding--full mt-8 justify-center items=center"
+  className="flex flex-col justify-center w-full mt-16"
 >
   <div
-    className="flex flex-col justify-center items-center text-center"
-  >
-    <h2
-      className="text-5xl font-bold"
-    >
-      John Cheng
-    </h2>
-    <p
-      className="uppercase mt-4 flex flex-col xl:flex-row items-center"
-    >
-      <button
-        className="relative m-2 uppercase"
-        onClick={[Function]}
-      >
-        <div
-          className="absolute bg-red w-full h-full transform -skew-x-12 -z-10"
-        />
-        <span
-          className="p-2"
-        >
-          Software Developer
-        </span>
-      </button>
-       
-      and
-       
-      <button
-        className="relative m-2 uppercase"
-        onClick={[Function]}
-      >
-        <div
-          className="absolute bg-red w-full h-full transform -skew-x-12 -z-10"
-        />
-        <span
-          className="p-2"
-        >
-          badminton player
-        </span>
-      </button>
-    </p>
-  </div>
-  <div
-    className="hidden md:flex ml-24"
+    style={
+      Object {
+        "boxSizing": "border-box",
+        "display": "inline-block",
+        "margin": 0,
+        "maxWidth": "100%",
+        "overflow": "hidden",
+        "position": "relative",
+      }
+    }
   >
     <div
       style={
         Object {
           "boxSizing": "border-box",
-          "display": "inline-block",
-          "margin": 0,
+          "display": "block",
           "maxWidth": "100%",
-          "overflow": "hidden",
-          "position": "relative",
         }
       }
     >
-      <div
+      <img
+        alt=""
+        aria-hidden={true}
+        role="presentation"
+        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkwIiBoZWlnaHQ9IjE5MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
         style={
           Object {
-            "boxSizing": "border-box",
+            "border": "none",
             "display": "block",
+            "margin": 0,
             "maxWidth": "100%",
+            "padding": 0,
           }
         }
-      >
-        <img
-          alt=""
-          aria-hidden={true}
-          role="presentation"
-          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
-          style={
-            Object {
-              "border": "none",
-              "display": "block",
-              "margin": 0,
-              "maxWidth": "100%",
-              "padding": 0,
-            }
-          }
-        />
-      </div>
-      <noscript>
-        <img
-          alt="Picture of site owner"
-          className="rounded-xl"
-          decoding="async"
-          src="/johncheng.jpg"
-          srcSet="/_next/image?url=%2Fjohncheng.jpg&w=384&q=75 1x, /_next/image?url=%2Fjohncheng.jpg&w=640&q=75 2x"
-          style={
-            Object {
-              "border": "none",
-              "bottom": 0,
-              "boxSizing": "border-box",
-              "display": "block",
-              "height": 0,
-              "left": 0,
-              "margin": "auto",
-              "maxHeight": "100%",
-              "maxWidth": "100%",
-              "minHeight": "100%",
-              "minWidth": "100%",
-              "objectFit": undefined,
-              "objectPosition": undefined,
-              "padding": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 0,
-            }
-          }
-        />
-      </noscript>
+      />
+    </div>
+    <noscript>
       <img
-        alt="Picture of site owner"
-        className="rounded-xl"
+        alt="Memoji of John Cheng"
         decoding="async"
-        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        src="/memoji.svg"
+        srcSet="/_next/image?url=%2Fmemoji.svg&w=256&q=75 1x, /_next/image?url=%2Fmemoji.svg&w=384&q=75 2x"
         style={
           Object {
             "border": "none",
@@ -145,7 +70,50 @@ exports[`Introduction Section 1`] = `
           }
         }
       />
-    </div>
+    </noscript>
+    <img
+      alt="Memoji of John Cheng"
+      decoding="async"
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      style={
+        Object {
+          "border": "none",
+          "bottom": 0,
+          "boxSizing": "border-box",
+          "display": "block",
+          "height": 0,
+          "left": 0,
+          "margin": "auto",
+          "maxHeight": "100%",
+          "maxWidth": "100%",
+          "minHeight": "100%",
+          "minWidth": "100%",
+          "objectFit": undefined,
+          "objectPosition": undefined,
+          "padding": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 0,
+        }
+      }
+    />
+  </div>
+  <div
+    className="flex justify-center mt-4 text-4xl lg:text-5xl"
+  >
+    Hi, I'm John 
+    <span
+      aria-label="Waving emoji"
+      role="img"
+    >
+      👋
+    </span>
+  </div>
+  <div
+    className="flex justify-center text-center mt-10 text-2xl lg:text-3xl"
+  >
+    I am a Software Engineer and Badminton Enthusiast.
   </div>
 </div>
 `;
