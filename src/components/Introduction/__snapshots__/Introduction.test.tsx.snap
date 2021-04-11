@@ -2,7 +2,7 @@
 
 exports[`Introduction Section 1`] = `
 <div
-  className="flex flex-col justify-center w-full mt-16"
+  className="flex flex-col min-h-full justify-center items-center"
 >
   <div
     style={
