@@ -7,12 +7,12 @@ import classNames from 'classnames';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <>
       <Header />
-      <main className={classNames('layout__margin--horizontal')}>
+      <main className={classNames('flex', 'flex-grow', 'flex-col')}>
         <Component {...pageProps} />
       </main>
-    </div>
+    </>
   );
 }
 

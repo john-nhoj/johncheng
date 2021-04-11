@@ -8,9 +8,9 @@ const Introduction = () => {
       className={classNames(
         'flex',
         'flex-col',
+        'min-h-full',
         'justify-center',
-        'w-full',
-        'mt-16'
+        'items-center'
       )}
     >
       <Image
