@@ -4,13 +4,13 @@ import Image from 'next/image';
 
 const Introduction = () => {
   return (
-    <div
+    <section
       className={classNames(
         'flex',
         'flex-col',
-        'min-h-full',
         'justify-center',
-        'items-center'
+        'items-center',
+        'hero-banner'
       )}
     >
       <Image
@@ -45,7 +45,12 @@ const Introduction = () => {
       >
         I am a Software Engineer and Badminton Enthusiast.
       </div>
-    </div>
+      <style jsx={true}>{`
+        .hero-banner {
+          min-height: calc(100vh - 5rem);
+        }
+      `}</style>
+    </section>
   );
 };
 
