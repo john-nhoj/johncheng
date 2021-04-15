@@ -5,3 +5,11 @@
   font-display: block;
   src: url(./fonts/Ubuntu-R.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-weight: 300;
+  font-style: italic;
+  font-display: block;
+  src: url(./fonts/Ubuntu-LI.ttf) format('truetype');
+}
