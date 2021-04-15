@@ -21,7 +21,3 @@ body {
   font-family: Ubuntu, Helvetica Neue, Helvetica, Arial;
   color: #333;
 }
-
-#__next {
-  @apply flex flex-col w-full h-full;
-}
