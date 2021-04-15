@@ -11,9 +11,12 @@ export const Header = () => {
         'border-b-2',
         'h-header',
         'flex',
-        'layout__padding--horizontal',
         'bg-white',
-        'border-border'
+        'border-border',
+        'px-2',
+        'md:px-4',
+        'lg:px-20',
+        'xl:px-gutter'
       )}
     >
       <LogoLink href="/" />

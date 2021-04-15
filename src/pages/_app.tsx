@@ -1,6 +1,4 @@
 import 'styles/global.css';
-import 'styles/typography.css';
-import 'styles/layout.css';
 import type { AppProps } from 'next/app';
 import { Header } from 'components/Header/Header';
 
