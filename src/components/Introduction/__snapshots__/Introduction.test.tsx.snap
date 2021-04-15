@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Introduction Section 1`] = `
-<div
-  className="flex flex-col justify-center w-full mt-16"
+<section
+  className="jsx-73013130 flex flex-col justify-center items-center hero-banner"
 >
   <div
     style={
@@ -100,20 +100,21 @@ exports[`Introduction Section 1`] = `
     />
   </div>
   <div
-    className="flex justify-center mt-4 text-4xl lg:text-5xl"
+    className="jsx-73013130 flex justify-center mt-4 text-4xl lg:text-5xl"
   >
     Hi, I'm John 
     <span
       aria-label="Waving emoji"
+      className="jsx-73013130"
       role="img"
     >
       👋
     </span>
   </div>
   <div
-    className="flex justify-center text-center mt-10 text-2xl lg:text-3xl"
+    className="jsx-73013130 flex justify-center text-center mt-10 text-2xl lg:text-3xl"
   >
     I am a Software Engineer and Badminton Enthusiast.
   </div>
-</div>
+</section>
 `;

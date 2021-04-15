@@ -10,8 +10,10 @@ export const HeaderLink = ({ label, ...rest }: LinkProps) => (
     className={classNames(
       'first:ml-0',
       'ml-2',
-      'layout__padding--full',
-      'header-link'
+      'p-2',
+      'md:p-4',
+      'md:text-lg',
+      'lg:text-2xl'
     )}
     {...rest}
   >

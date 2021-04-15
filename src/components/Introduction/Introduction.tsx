@@ -1,16 +1,21 @@
 import classNames from 'classnames';
 import React from 'react';
 import Image from 'next/image';
+import { theme } from 'styles/tailwind';
 
 const Introduction = () => {
+  const {
+    height: { screen, header },
+  } = theme;
+
   return (
-    <div
+    <section
       className={classNames(
         'flex',
         'flex-col',
         'justify-center',
-        'w-full',
-        'mt-16'
+        'items-center',
+        'hero-banner'
       )}
     >
       <Image
@@ -45,7 +50,12 @@ const Introduction = () => {
       >
         I am a Software Engineer and Badminton Enthusiast.
       </div>
-    </div>
+      <style jsx={true}>{`
+        .hero-banner {
+          min-height: calc(${screen} - ${header});
+        }
+      `}</style>
+    </section>
   );
 };
 

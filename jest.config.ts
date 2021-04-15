@@ -13,6 +13,7 @@ const config: Config.InitialOptions = {
   roots: ['src'],
   moduleNameMapper: {
     '^(components/.+)$': '<rootDir>/src/$1/',
+    '^(styles/.+)$': '<rootDir>/src/$1/',
   },
 };
 export default config;

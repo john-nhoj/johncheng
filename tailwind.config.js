@@ -1,3 +1,8 @@
+const spacings = {
+  header: '5rem',
+  gutter: '19rem',
+};
+
 module.exports = {
   purge: [
     './src/pages/**/*.{js,jsx,ts,tsx}',
@@ -17,13 +22,11 @@ module.exports = {
     },
     extend: {
       spacing: {
-        gutter: '19rem',
+        gutter: spacings.gutter,
       },
-    },
-  },
-  variants: {
-    extend: {
-      margin: ['first'],
+      height: {
+        header: spacings.header,
+      },
     },
   },
 };
