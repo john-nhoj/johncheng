@@ -5,10 +5,10 @@ const config: Config.InitialOptions = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/src/**/*.{ts,tsx}',
-    '!**/src/pages/*.{ts,tsx}',
     '!**/node_modules/**',
-    '!**/aws/**',
     '!**/.next/**',
+    '!**/src/pages/**/*.{ts,tsx}',
+    '!**/src/api/*.ts',
   ],
   roots: ['src'],
   moduleNameMapper: {
