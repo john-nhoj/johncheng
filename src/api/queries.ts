@@ -43,3 +43,27 @@ export const getAllBlogPostsSlugs = () => {
     return res.json();
   });
 };
+
+export const getBlogPostsList = () => {
+  const query = `
+  {
+    blogPostCollection {
+      items {
+        title
+        description
+        publishDate
+        heroImage {
+          url
+        }
+        sys {
+          id
+        }
+      }
+    }
+  }
+  `;
+
+  return fetchContentful(query).then((res) => {
+    return res.json();
+  });
+};
