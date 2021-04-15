@@ -1,8 +1,13 @@
 import classNames from 'classnames';
 import React from 'react';
 import Image from 'next/image';
+import { theme } from 'styles/tailwind';
 
 const Introduction = () => {
+  const {
+    height: { screen, header },
+  } = theme;
+
   return (
     <section
       className={classNames(
@@ -47,7 +52,7 @@ const Introduction = () => {
       </div>
       <style jsx={true}>{`
         .hero-banner {
-          min-height: calc(100vh - 5rem);
+          min-height: calc(${screen} - ${header});
         }
       `}</style>
     </section>
