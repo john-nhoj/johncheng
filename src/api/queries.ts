@@ -52,6 +52,7 @@ export const getBlogPostsList = () => {
         title
         description
         publishDate
+        slug
         heroImage {
           url
         }
