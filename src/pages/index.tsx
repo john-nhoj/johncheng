@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { Introduction } from 'components/Introduction/Introduction';
-import { BlogPosts } from 'components/BlogPosts';
+import { BlogPosts } from 'components/BlogPosts/BlogPosts';
 import { getBlogPostsList } from 'api/queries';
 import { Post } from 'src/types/contentful';
 
