@@ -24,7 +24,14 @@ const BlogPosts = ({ posts }: Props) => {
       )}
     >
       <h2>Recent posts</h2>
-      <div className={classNames('flex', 'flex-wrap', 'justify-center')}>
+      <div
+        className={classNames(
+          'flex',
+          'flex-wrap',
+          'justify-center',
+          'items-start'
+        )}
+      >
         {posts.map((post) => (
           <BlogPostCard post={post} key={post.sys.id} />
         ))}
