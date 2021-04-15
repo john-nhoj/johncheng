@@ -1,6 +1,5 @@
+import { fetchContentful } from './fetch';
 import { postFields } from './schemas';
-
-const { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } = process.env;
 
 export const getPost = (slug: string) => {
   const query = `
@@ -12,17 +11,7 @@ export const getPost = (slug: string) => {
     }
   }
   `;
-  return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query }),
-    }
-  ).then((res) => {
+  return fetchContentful(query).then((res) => {
     return res.json();
   });
 };
@@ -35,17 +24,7 @@ export const getAuthor = (id: string) => {
     }
   }
   `;
-  return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query }),
-    }
-  ).then((res) => {
+  return fetchContentful(query).then((res) => {
     return res.json();
   });
 };
@@ -60,17 +39,7 @@ export const getAllBlogPostsSlugs = () => {
     }
   }
   `;
-  return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query }),
-    }
-  ).then((res) => {
+  return fetchContentful(query).then((res) => {
     return res.json();
   });
 };
