@@ -14,3 +14,6 @@
 
 ## 'public' is needed for assets
 !/public/**
+
+## NextJS config are needed for image optimization
+!/next.config.js
