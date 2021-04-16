@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import NextJsLink, { LinkProps as NextJsLinkProps } from 'next/link';
 
 export interface LinkProps extends NextJsLinkProps {
@@ -14,7 +13,7 @@ export interface LinkProps extends NextJsLinkProps {
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export const Link = ({ href, children, className, ...rest }: LinkProps) => (
   <NextJsLink href={href}>
-    <a className={classNames('flex', 'items-center', className)} {...rest}>
+    <a className={className} {...rest}>
       {children}
     </a>
   </NextJsLink>

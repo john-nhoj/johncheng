@@ -110,7 +110,7 @@ exports[`Header 1`] = `
     className="flex flex-row flex-1 items-center justify-end"
   >
     <a
-      className="flex items-center first:ml-0 ml-2 p-2 md:p-4 md:text-lg lg:text-2xl"
+      className="first:ml-0 ml-2 p-2 md:p-4 md:text-lg lg:text-2xl"
       href="/"
       onClick={[Function]}
       onMouseEnter={[Function]}
@@ -118,7 +118,7 @@ exports[`Header 1`] = `
       Home
     </a>
     <a
-      className="flex items-center first:ml-0 ml-2 p-2 md:p-4 md:text-lg lg:text-2xl"
+      className="first:ml-0 ml-2 p-2 md:p-4 md:text-lg lg:text-2xl"
       href="/about"
       onClick={[Function]}
       onMouseEnter={[Function]}
@@ -126,7 +126,7 @@ exports[`Header 1`] = `
       About
     </a>
     <a
-      className="flex items-center first:ml-0 ml-2 p-2 md:p-4 md:text-lg lg:text-2xl"
+      className="first:ml-0 ml-2 p-2 md:p-4 md:text-lg lg:text-2xl"
       href="/blog"
       onClick={[Function]}
       onMouseEnter={[Function]}
